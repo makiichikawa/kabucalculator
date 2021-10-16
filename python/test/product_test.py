@@ -4,7 +4,7 @@ import os
 
 sys.path.append(os.path.abspath('.'))
 
-from lib.product import Product
+from lib.product import Product  # noqa: E402
 
 
 class TestProduct(unittest.TestCase):
