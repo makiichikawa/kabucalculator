@@ -11,15 +11,15 @@ class TestProduct(unittest.TestCase):
     def setUp(self):
         self.product = Product()
 
-    def test_log_return(self):
+    def test_calculate_log_return(self):
         self.assertEqual(
             [0.6931471805599453, 0.4054651081081645, 0.2876820724517808],
             self.product.log_return([1, 2, 3, 4]))
 
-    def test_myu(self):
+    def test_calculate_myu(self):
         self.assertEqual(2.22, self.product.myu([1.11, 2.22, 3.33]))
 
-    def test_sigma_integer(self):
+    def test_calculate_sigma(self):
         self.assertEqual(self.product.sigma([1, 2]), 0.7071067811865476)
 
 
