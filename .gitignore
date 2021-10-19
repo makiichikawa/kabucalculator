@@ -3,3 +3,4 @@ python/bin
 python/include
 python/lib/python3.9
 python/lib/__pycache__
+python/test/__pycache__/

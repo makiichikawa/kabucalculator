@@ -21,8 +21,10 @@ class Product(metaclass=ABCMeta):
 
     def calculate_log_return(self, stocks):
         log_return = []
-        for i in range(len(stocks)-1):
-            log_return.append(math.log(stocks[i+1]) - math.log(stocks[i]))
+        for term in range(len(stocks)-1):
+            log_return.append(
+                math.log(stocks[term+1]) - math.log(stocks[term])
+            )
         return log_return
 
     def calculate_myu(self, log_return):
