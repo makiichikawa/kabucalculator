@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  python:
+    build:
+      context: .
+      dockerfile: ./python/Dockerfile
+    expose:
+      - 80
+    tty: true
