@@ -3,7 +3,7 @@ import sys
 import os
 import datetime
 
-sys.path.append(os.path.abspath('.'))
+sys.path.append(os.path.abspath('..'))
 
 from lib.product import Product  # noqa: E402
 
