@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  python:
+    build:
+      context: .
+      dockerfile: ./python/Dockerfile
+    volumes:
+      - type: bind
+        source: ./python/lib
+        target: /python/lib
+      - type: bind
+        source: ./python/test
+        target: /python/test
+    expose:
+      - 80
+    tty: true

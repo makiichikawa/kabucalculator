@@ -5,7 +5,7 @@ import sys
 import os
 import datetime
 
-sys.path.append(os.path.abspath('.'))
+sys.path.append(os.path.abspath('..'))
 
 from lib.stock import Stock  # noqa: E402
 
