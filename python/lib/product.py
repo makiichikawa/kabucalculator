@@ -1,6 +1,6 @@
-import math
 import numpy as np
 from abc import ABCMeta, abstractclassmethod
+from decimal import Decimal
 
 
 class Product(metaclass=ABCMeta):
@@ -23,7 +23,10 @@ class Product(metaclass=ABCMeta):
         log_return = []
         for term in range(len(stocks)-1):
             log_return.append(
-                math.log(stocks[term+1]) - math.log(stocks[term])
+                float(
+                    Decimal(str(stocks[term+1])).ln()
+                    - Decimal(str(stocks[term])).ln()
+                )
             )
         return log_return
 
@@ -31,5 +34,5 @@ class Product(metaclass=ABCMeta):
         np_log_return = np.array(log_return)
         return np_log_return.mean()
 
-    def calculate_sigma(self, log_return):
-        return np.std(log_return, ddof=1)
+    def calculate_variance(self, log_return):
+        return np.var(log_return, ddof=1)
