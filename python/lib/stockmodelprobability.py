@@ -1,7 +1,7 @@
 from lib.probability import Probability
 from lib.actualnormparameter import ActualNormParameter
-from math import log
 from scipy.stats import norm
+from decimal import Decimal
 
 
 class StockModelProbability(Probability):
@@ -12,7 +12,10 @@ class StockModelProbability(Probability):
         self.initial_price = initial_price
 
     def calculate_upper_probability(self, current_price):
-        log_return = log(current_price) - log(self.initial_price)
+        log_return = float(
+            Decimal(str(current_price)).ln()
+            - Decimal(str(self.initial_price)).ln()
+        )
         myuhat = self.actual_norm_parameters.calculate_myuhat()
         sigmahat = self.actual_norm_parameters.calculate_sigmahat()
         return norm.sf(x=log_return, loc=myuhat, scale=sigmahat)
