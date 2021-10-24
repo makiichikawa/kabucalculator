@@ -1,7 +1,7 @@
 from decimal import Decimal, ROUND_HALF_UP
 
 
-class ActualNormParameter:
+class StockModelParameter:
 
     def set_parameters(self, myu, variance, term):
         self.myu = Decimal(str(myu))
