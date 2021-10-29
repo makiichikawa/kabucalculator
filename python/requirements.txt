@@ -1,6 +1,7 @@
 # production
 investpy
 numpy
+scipy
 
 # development only
 flake8
