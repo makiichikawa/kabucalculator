@@ -12,6 +12,4 @@ services:
       - type: bind
         source: ./python/test
         target: /python/test
-    expose:
-      - 80
     tty: true
