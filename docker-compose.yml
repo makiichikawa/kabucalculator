@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: ./mysql/Dockerfile
     expose:
-      - $DB_PORT
+      - 3306
     networks:
       - dbserver
     volumes:
