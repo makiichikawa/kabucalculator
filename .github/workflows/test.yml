@@ -12,6 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Test with docker-compose stack
+        env:
+          DB_DATABASE: ${{secrets.DB_DATABASE}}
+          DB_USERNAME: ${{secrets.DB_USERNAME}}
+          DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+          DB_ROOT_PASSWORD: ${{secrets.DB_ROOT_PASSWORD}}
         run: |
           docker-compose up -d --remove-orphans
           docker exec -i kabucalculator_python_1 bash -c "cd test && python -m unittest"

@@ -1,6 +1,14 @@
+# vscodeの設定ファイルを無視する
 .vscode
+
+# pythonのパッケージを無視する
 python/bin
 python/include
 python/lib/python3.9
+
+# キャッシュファイルを無視する
 python/lib/__pycache__
 python/test/__pycache__/
+
+# envファイル
+.env

@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: ./python/Dockerfile
+    networks:
+      - dbserver
     volumes:
       - type: bind
         source: ./python/lib
@@ -12,6 +14,26 @@ services:
       - type: bind
         source: ./python/test
         target: /python/test
-    expose:
-      - 80
     tty: true
+
+  mysql:
+    build:
+      context: .
+      dockerfile: ./mysql/Dockerfile
+    expose:
+      - 3306
+    networks:
+      - dbserver
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=$DB_DATABASE
+      - MYSQL_USERNAME=$DB_USERNAME
+      - MYSQL_PASSWORD=$DB_PASSWORD
+      - MYSQL_ROOT_PASSWORD=$DB_ROOT_PASSWORD
+
+networks:
+  dbserver:
+
+volumes:
+  mysql:
