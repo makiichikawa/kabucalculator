@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: ./python/Dockerfile
+    depends_on:
+      - mysql
     networks:
       - dbserver
     volumes:
@@ -14,25 +16,34 @@ services:
       - type: bind
         source: ./python/test
         target: /python/test
-    env_file:
-      - ./.env
+    environment:
+      - DB_HOST=127.0.0.1
+      - DB_PORT=3306
+      - DB_DATABASE
+      - DB_USERNAME
+      - DB_PASSWORD
+      - DB_ROOT_PASSWORD
+      - DB_TABLE
     tty: true
 
   mysql:
     build:
       context: .
       dockerfile: ./mysql/Dockerfile
-    expose:
-      - 3306
+    ports:
+      - "3306:3306"
     networks:
       - dbserver
     volumes:
       - mysql:/var/lib/mysql
     environment:
-      - MYSQL_DATABASE=$DB_DATABASE
-      - MYSQL_USERNAME=$DB_USERNAME
-      - MYSQL_PASSWORD=$DB_PASSWORD
-      - MYSQL_ROOT_PASSWORD=$DB_ROOT_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_USERNAME
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+
+  wait:
+    image: willwill/wait-for-it:latest
 
 networks:
   dbserver:
