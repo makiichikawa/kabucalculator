@@ -23,9 +23,6 @@ jobs:
           DB_TABLE: indicators
         run: |
           docker-compose up -d --remove-orphans
-          docker ps -a
-          docker logs kabucalculator_mysql_1
-          docker network inspect bridge
 
       - name: Run Tests
         run: |
