@@ -54,11 +54,11 @@ class DBRegister:
     def db_connect(self):
         self.connection = None
         self.connection = mydb.connect(
-                host=self.__host,
-                port=self.__port,
-                user=self.__username,
-                password=self.__password,
-                database=self.__database
+            host=self.__host,
+            port=self.__port,
+            user=self.__username,
+            password=self.__password,
+            database=self.__database
         )
         self.connection.ping(reconnect=True)
 
