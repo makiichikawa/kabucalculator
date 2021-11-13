@@ -81,15 +81,21 @@ class DBRegister:
             `myul` double(15,14) not null,
             `sigmal` double(15,14) not null,
             `myuhatl` double(15,14) not null,
-            `probl` double(15,14) not null
+            `probl` double(15,14) not null,
+            `created_at` timestamp not null default current_timestamp,
+            `update_at` timestamp not null default current_timestamp \
+            on update current_timestamp
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
         """
         self.cursor.execute(drop_sql)
         self.cursor.execute(create_sql)
 
     def db_insert(self, values):
-        sql = f'INSERT INTO {self.__table} VALUES '\
-               '(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+        sql = f'INSERT INTO {self.__table} '\
+               '(symbol, price, myus, sigmas, myuhats, probs, '\
+               'myum, sigmam, myuhatm, probm, '\
+               'myul, sigmal, myuhatl, probl) VALUES '\
+               '(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
         self.cursor.executemany(sql, values)
         self.connection.commit()
 
