@@ -22,7 +22,7 @@ jobs:
           DB_PASSWORD: password
           DB_TABLE: indicators
         run: |
-          docker-compose up -d --remove-orphans
+          docker-compose -f docker-compose.ci.yml up -d --remove-orphans
 
       - name: Run Tests
         run: |
