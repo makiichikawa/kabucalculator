@@ -18,10 +18,5 @@ class Stock(Product):
             self.prices['high'] = stocks_data['High'].to_list()
             self.prices['low'] = stocks_data['Low'].to_list()
             self.prices['close'] = stocks_data['Close'].to_list()
-        except IndexError as e:
-            print('クラス：', type(e))
-            print('メッセージ：', e.args)
-            print('----トレースバック情報----')
-            import traceback
-            traceback.print_exc()
+        except IndexError:
             raise
