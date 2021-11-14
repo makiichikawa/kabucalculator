@@ -1,6 +1,7 @@
 import unittest
 import sys
 import os
+import mysql.connector as mydb
 
 sys.path.append('..')
 
@@ -44,6 +45,12 @@ class TestDBRegister(unittest.TestCase):
             self.values,
             self.dbregister.cursor.fetchall()
         )
+
+    def test_db_insert_exception(self):
+        error_values = [('1234', 101)]
+        self.dbregister.db_insert(self.values)
+        with self.assertRaises(mydb.Error):
+            self.dbregister.db_insert(error_values)
 
     def tearDown(self):
         self.dbregister.db_close()

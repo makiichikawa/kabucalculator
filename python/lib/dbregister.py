@@ -108,7 +108,7 @@ class DBRegister:
             self.cursor.executemany(sql, values)
             self.connection.commit()
         except mydb.Error:
-            self.cursor.rollback()
+            self.connection.rollback()
             raise
 
     def db_close(self):
