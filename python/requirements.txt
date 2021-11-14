@@ -2,6 +2,7 @@
 investpy
 numpy
 scipy
+mysql-connector-python
 
 # development only
 flake8

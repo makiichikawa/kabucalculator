@@ -11,12 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Test with docker-compose stack
+      - name: docker-compose up
         env:
-          DB_DATABASE: ${{secrets.DB_DATABASE}}
-          DB_USERNAME: ${{secrets.DB_USERNAME}}
-          DB_PASSWORD: ${{secrets.DB_PASSWORD}}
-          DB_ROOT_PASSWORD: ${{secrets.DB_ROOT_PASSWORD}}
+          MYSQL_DATABASE: test
+          MYSQL_ROOT_PASSWORD: password
+          DB_HOST: mysql
+          DB_PORT: 3306
+          DB_DATABASE: test
+          DB_USERNAME: root
+          DB_PASSWORD: password
+          DB_TABLE: indicators
         run: |
-          docker-compose up -d --remove-orphans
+          docker-compose -f docker-compose.ci.yml up -d --remove-orphans
+
+      - name: Run Tests
+        run: |
           docker exec -i kabucalculator_python_1 bash -c "cd test && python -m unittest"

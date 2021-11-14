@@ -14,6 +14,8 @@ services:
       - type: bind
         source: ./python/test
         target: /python/test
+    env_file:
+      - ./.env
     tty: true
 
   mysql:
@@ -31,6 +33,7 @@ services:
       - MYSQL_USERNAME=$DB_USERNAME
       - MYSQL_PASSWORD=$DB_PASSWORD
       - MYSQL_ROOT_PASSWORD=$DB_ROOT_PASSWORD
+      - TZ=Asia/Tokyo
 
 networks:
   dbserver:
