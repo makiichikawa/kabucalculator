@@ -95,7 +95,6 @@ class DBRegister:
             self.cursor.execute(drop_sql)
             self.cursor.execute(create_sql)
         except mydb.Error:
-            self.cursor.rollback()
             raise
 
     def db_insert(self, values):
