@@ -3,6 +3,7 @@ investpy
 numpy
 scipy
 mysql-connector-python
+jpbizday
 
 # development only
 flake8
