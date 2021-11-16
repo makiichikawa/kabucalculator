@@ -5,6 +5,7 @@
 python/bin
 python/include
 python/lib/python3.9
+python/README.md
 
 # キャッシュファイルを無視する
 python/lib/__pycache__
