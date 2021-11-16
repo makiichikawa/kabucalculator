@@ -24,6 +24,10 @@ jobs:
         run: |
           docker-compose -f docker-compose.ci.yml up -d --remove-orphans
 
+      - name: Run Lint
+        run : |
+          docker exec -i kabucalculator_python_1 bash -c "python -m flake8 test lib --exclude python3.9 && exit"
+
       - name: Run Tests
         run: |
           docker exec -i kabucalculator_python_1 bash -c "cd test && python -m unittest"
