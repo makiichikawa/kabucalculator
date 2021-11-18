@@ -74,17 +74,14 @@ class DBRegister:
                 `id` int auto_increment primary key,
                 `symbol` varchar(4) not null,
                 `price` int(11) not null,
-                `myus` double(15,14) not null,
-                `sigmas` double(15,14) not null,
                 `myuhats` double(15,14) not null,
+                `sigmahats` double(15,14) not null,
                 `probs` double(15,14) not null,
-                `myum` double(15,14) not null,
-                `sigmam` double(15,14) not null,
                 `myuhatm` double(15,14) not null,
+                `sigmahatm` double(15,14) not null,
                 `probm` double(15,14) not null,
-                `myul` double(15,14) not null,
-                `sigmal` double(15,14) not null,
                 `myuhatl` double(15,14) not null,
+                `sigmahatl` double(15,14) not null,
                 `probl` double(15,14) not null,
                 `created_at` timestamp not null default current_timestamp,
                 `update_at` timestamp not null default current_timestamp \
@@ -100,10 +97,10 @@ class DBRegister:
     def db_insert(self, values):
         try:
             sql = f'INSERT INTO {self.__table} '\
-                '(symbol, price, myus, sigmas, myuhats, probs, '\
-                'myum, sigmam, myuhatm, probm, '\
-                'myul, sigmal, myuhatl, probl) VALUES '\
-                '(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+                '(symbol, price, myuhats, sigmahats, probs, '\
+                'myuhatm, sigmahatm, probm, '\
+                'myuhatl, sigmahatl, probl) VALUES '\
+                '(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
             self.cursor.executemany(sql, values)
             self.connection.commit()
         except mydb.Error:
