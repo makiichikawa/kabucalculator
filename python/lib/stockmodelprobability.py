@@ -59,4 +59,7 @@ class StockModelProbability(Probability):
             Decimal(str(current_price)).ln()
             - Decimal(str(self.__initial_price)).ln()
         )
-        return norm.sf(x=log_return, loc=self.myuhat, scale=self.sigmahat)
+        if self.sigmahat == 0:
+            raise ZeroDivisionError('sigmahat is zero')
+        else:
+            return norm.sf(x=log_return, loc=self.myuhat, scale=self.sigmahat)

@@ -24,6 +24,13 @@ class TestMyuHat(unittest.TestCase):
             )
         )
 
+    def test_calculate_upper_probability_error(self):
+        self.stockmodelprobability.variance = 0
+        with self.assertRaises(ZeroDivisionError):
+            self.stockmodelprobability.calculate_upper_probability(
+                current_price=1
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
