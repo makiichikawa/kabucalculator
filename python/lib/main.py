@@ -43,6 +43,6 @@ try:
     dbregister.db_init()
     dbregister.db_insert(indicators_of_all_symbols)
 except mydb.Error as error:
-    print(error.arg)
+    print(error.args)
 finally:
     dbregister.db_close()
