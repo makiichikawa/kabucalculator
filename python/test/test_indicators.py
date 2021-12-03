@@ -108,8 +108,37 @@ class TestIndicators(unittest.TestCase):
                 }
             )
         )
-        with self.assertRaises(IndexError):
+        with self.assertRaises(
+            IndexError,
+            msg='prices length is less than long terms'
+        ):
             self.indicators._get_prices('1234')
+
+    def test_set_parameters_stockmodelprobability(self):
+        mock = MagicMock()
+        self.indicators.stock = mock
+        arguments = [1.1, 2.2, 3.3]
+        self.indicators._set_parameters_of_stockmodelprobability(
+            arguments
+        )
+        mock.calculate_myu.assert_called_once()
+        mock.calculate_myu.assert_called_once_with(arguments)
+        mock.calculate_variance.assert_called_once()
+        mock.calculate_variance.assert_called_once_with(arguments)
+
+    def test_set_attributes_of_stockmodelparameter(self):
+        mock = MagicMock()
+        self.indicators.stock = mock
+        mock.calculate_myu.return_value = 0.04
+        mock.calculate_variance.return_value = 0.02
+        self.indicators._set_attributes_of_stockmodelparameter(
+            [1.1, 2.2, 3.3],
+            2
+        )
+        mock.calculate_myu.assert_called_once()
+        mock.calculate_myu.assert_called_once_with([2.2, 3.3])
+        mock.calculate_variance.assert_called_once()
+        mock.calculate_variance.assert_called_once_with([2.2, 3.3])
 
     def test_calculate_rate(self):
         self.indicators.stockmodelprobability.calculate_upper_probability = (
