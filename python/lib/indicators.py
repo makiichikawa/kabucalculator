@@ -95,11 +95,11 @@ class Indicators:
 
     def _set_attributes_of_stockmodelparameter(self, log_returns, term):
         self.stockmodelparameter.myu = self.__stock.calculate_myu(
-            log_returns[-term:-1]
+            log_returns[-term:]
         )
         self.stockmodelparameter.variance = (
             self.__stock.calculate_variance(
-                log_returns[-term:-1]
+                log_returns[-term:]
             )
         )
         self.stockmodelparameter.term = term
