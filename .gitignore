@@ -10,6 +10,7 @@ python/README.md
 # キャッシュファイルを無視する
 python/lib/__pycache__
 python/test/__pycache__/
+python/.DS_Store
 
 # envファイル
 .env
