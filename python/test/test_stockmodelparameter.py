@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath('..'))
 from lib.stockmodelparameter import StockModelParameter  # noqa: E402
 
 
-class TestMyuHat(unittest.TestCase):
+class TestStockModelParameter(unittest.TestCase):
 
     def setUp(self):
         self.stockmodelparameter = StockModelParameter()
