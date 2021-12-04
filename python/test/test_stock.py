@@ -23,9 +23,9 @@ class TestStock(unittest.TestCase):
             self.country,
             self.interval
             )
-        self.stock.set_prices(self.symbol)
+        self.stock.set_historical_prices(self.symbol)
 
-    def test_set_stocks(self):
+    def test_set_historical_prices(self):
         expect = {
             'open': [626, 677],
             'high': [689, 683],
@@ -33,6 +33,12 @@ class TestStock(unittest.TestCase):
             'close': [679, 671]
             }
         self.assertEqual(expect, self.stock.prices)
+
+    def test_properties(self):
+        self.assertEqual(self.stock.open_prices, [626, 677])
+        self.assertEqual(self.stock.high_prices, [689, 683])
+        self.assertEqual(self.stock.low_prices, [623, 656])
+        self.assertEqual(self.stock.close_prices, [679, 671])
 
     @patch(
         "investpy.get_stock_historical_data",
@@ -46,7 +52,7 @@ class TestStock(unittest.TestCase):
             self.interval
             )
         with self.assertRaises(IndexError):
-            stock.set_prices(self.symbol)
+            stock.set_historical_prices(self.symbol)
 
 
 if __name__ == "__main__":

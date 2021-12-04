@@ -84,12 +84,7 @@ class TestIndicators(unittest.TestCase):
     def test_get_prices(self):
         self.indicators.stock = (
             MagicMock(
-                prices={
-                    'open': [100, 150, 200],
-                    'high': [101, 151, 201],
-                    'low': [102, 152, 202],
-                    'close': [103, 153, 203]
-                }
+                close_prices=[103, 153, 203]
             )
         )
         self.assertEqual(

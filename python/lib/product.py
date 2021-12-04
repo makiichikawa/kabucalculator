@@ -16,7 +16,7 @@ class Product(metaclass=ABCMeta):
         self.country = country
 
     @abstractclassmethod
-    def set_prices(self):
+    def set_historical_prices(self):
         pass
 
     def calculate_log_return(self, stocks):

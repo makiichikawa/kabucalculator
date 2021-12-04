@@ -78,8 +78,8 @@ class Indicators:
             return indicators_by_symbol
 
     def _get_prices(self, symbol):
-        self.__stock.set_prices(symbol)
-        prices = self.__stock.prices['close']
+        self.__stock.set_historical_prices(symbol)
+        prices = self.__stock.close_prices
         if len(prices) < self.__terms['long']:
             raise IndexError('prices length is less than long terms')
         else:

@@ -5,7 +5,23 @@ from lib.product import Product
 
 class Stock(Product):
 
-    def set_prices(self, symbol):
+    @property
+    def open_prices(self):
+        return self.prices['open']
+
+    @property
+    def high_prices(self):
+        return self.prices['high']
+
+    @property
+    def low_prices(self):
+        return self.prices['low']
+
+    @property
+    def close_prices(self):
+        return self.prices['close']
+
+    def set_historical_prices(self, symbol):
         try:
             stocks_data = investpy.get_stock_historical_data(
                 stock=symbol,
