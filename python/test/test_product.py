@@ -9,7 +9,7 @@ from lib.product import Product  # noqa: E402
 
 
 class ConcreteProduct(Product):
-    def set_prices(self):
+    def set_historical_prices(self):
         self.prices = [100]
 
 
