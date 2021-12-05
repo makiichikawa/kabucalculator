@@ -1,5 +1,6 @@
 from decimal import Decimal
 import sys
+import logging
 
 sys.path.append('..')
 from lib.stockmodelprobability import StockModelProbability  # noqa: E402
@@ -37,13 +38,19 @@ class Indicators:
         self.__stock = stock
 
     def calculate_indicators_of_all_symbols(self):
+        logger = logging.getLogger("main").getChild("indicators")
         indicators = []
         for symbol in self.__symbols:
+            logger.debug(
+                (
+                    f"{self.__symbols.index(symbol)} / "
+                    + f"{len(self.__symbols)} is being calculated"
+                )
+            )
             try:
                 indicators_by_symbol = self._calculate_indicators_by(symbol)
             except (IndexError, ZeroDivisionError) as error:
-                print(error.args)
-                print(symbol)
+                logger.warning(f"symbol:{symbol} error:{error.args}")
                 continue
             else:
                 indicators.append(indicators_by_symbol)
