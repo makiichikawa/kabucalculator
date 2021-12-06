@@ -41,6 +41,18 @@ class TestIndicators(unittest.TestCase):
             expected_value
         )
 
+    @patch(
+        'lib.indicators.Indicators._calculate_indicators_by',
+        MagicMock(side_effect=IndexError('indexerror'))
+    )
+    def test_calculate_indicators_of_all_symbols_error(self):
+        with self.assertLogs("main", level="WARNING") as cm:
+            self.indicators.calculate_indicators_of_all_symbols()
+        self.assertEqual(
+            cm.output,
+            ["WARNING:main.indicators:symbol:1234 error:('indexerror',)"]
+        )
+
     @patch('lib.indicators.Indicators._get_prices')
     @patch('lib.indicators.Indicators._calculate_rate')
     def test_calculate_indicators_by(self, _calculate_rate, _get_prices):

@@ -15,8 +15,8 @@ class BusinessDay:
         self.__to_date = to_date
 
     def from_date(self, before_days):
-        business_days = 1
         date = self.__to_date
+        business_days = 1 if jpbizday.is_bizday(date) else 0
         while business_days < before_days:
             date -= datetime.timedelta(days=1)
             if jpbizday.is_bizday(date):
