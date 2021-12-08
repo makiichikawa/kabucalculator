@@ -1,4 +1,4 @@
-import investpy
+from investpy import stocks
 
 from lib.product import Product
 
@@ -23,7 +23,7 @@ class Stock(Product):
 
     def set_historical_prices(self, symbol):
         try:
-            stocks_data = investpy.get_stock_historical_data(
+            stocks_data = stocks.get_stock_historical_data(
                 stock=symbol,
                 country=self.country,
                 from_date=self.from_date,

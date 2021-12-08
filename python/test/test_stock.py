@@ -41,7 +41,7 @@ class TestStock(unittest.TestCase):
         self.assertEqual(self.stock.close_prices, [679, 671])
 
     @patch(
-        "investpy.get_stock_historical_data",
+        "investpy.stocks.get_stock_historical_data",
         MagicMock(side_effect=IndexError)
         )
     def test_set_stocks_error(self):

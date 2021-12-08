@@ -1,9 +1,10 @@
 import sys
 import datetime
 import os
-import investpy
+from investpy import stocks
 import mysql.connector as mydb
 import logging
+from random import sample
 
 sys.path.append('..')
 
@@ -48,7 +49,10 @@ from_date = businessday.from_date(TERMS['long'])
 indicators = Indicators()
 indicators.stock = Stock(from_date, to_date, COUNTRY, INTERVAL)
 indicators.terms = TERMS
-indicators.symbols = investpy.stocks.get_stocks_list(COUNTRY)
+if os.getenv('ENVIRONMENT') == 'production':
+    indicators.symbols = stocks.get_stocks_list(COUNTRY)
+elif os.getenv('ENVIRONMENT') == 'development':
+    indicators.symbols = sample(stocks.get_stocks_list(COUNTRY), 100)
 logger.info("start to calculate indicators")
 indicators_of_all_symbols = indicators.calculate_indicators_of_all_symbols()
 logger.info("the calculation of all indicators is completed!!")
