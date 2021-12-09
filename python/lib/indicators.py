@@ -1,6 +1,7 @@
 from decimal import Decimal
 import sys
 import logging
+from time import sleep
 
 sys.path.append('..')
 from lib.stockmodelprobability import StockModelProbability  # noqa: E402
@@ -48,6 +49,7 @@ class Indicators:
                 )
             )
             try:
+                sleep(1.5)
                 indicators_by_symbol = self._calculate_indicators_by(symbol)
             except (IndexError, ZeroDivisionError) as error:
                 logger.warning(f"symbol:{symbol} error:{error.args}")
