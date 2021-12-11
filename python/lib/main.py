@@ -44,7 +44,8 @@ COUNTRY = 'japan'
 businessday = BusinessDay()
 to_date = datetime.datetime.now()
 businessday.to_date = to_date
-from_date = businessday.from_date(TERMS['long'])
+term_of_analysis = TERMS['long'] * 2
+from_date = businessday.from_date(term_of_analysis)
 
 indicators = Indicators()
 indicators.stock = Stock(from_date, to_date, COUNTRY, INTERVAL)
