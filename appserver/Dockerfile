@@ -5,8 +5,8 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && apt-get install -y nodejs yarn \
     && mkdir /app
 WORKDIR /app
-COPY ./app/Gemfile /app/Gemfile
-COPY ./app/Gemfile.lock /app/Gemfile.lock
+COPY ./appserver/Gemfile /app/Gemfile
+COPY ./appserver/Gemfile.lock /app/Gemfile.lock
 RUN gem install bundler
 RUN bundle install
-COPY ./app /app
+COPY ./appserver /app
