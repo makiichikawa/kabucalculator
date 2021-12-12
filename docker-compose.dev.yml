@@ -1,6 +1,25 @@
 version: "3"
 
 services:
+  app:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    command:
+      bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - type: bind
+        source: ./app
+        target: /app
+    ports:
+      - 3000:3000
+    depends_on:
+      - mysql
+    networks:
+      - dbserver
+    env_file:
+      - ./.env
+
   python:
     build:
       context: .
