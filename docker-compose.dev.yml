@@ -10,7 +10,7 @@ services:
     volumes:
       - type: bind
         source: ./appserver
-        target: /app
+        target: /appserver
     ports:
       - 3000:3000
     depends_on:
