@@ -1,15 +1,15 @@
 version: "3"
 
 services:
-  python:
+  batch:
     build:
       context: .
-      dockerfile: ./python/Dockerfile
+      dockerfile: ./batch/Dockerfile
     depends_on:
-      mysql:
+      dbserver:
         condition: service_healthy
     links:
-      - mysql
+      - dbserver
     environment:
       - DB_HOST
       - DB_PORT
@@ -19,16 +19,16 @@ services:
       - DB_TABLE
     tty: true
 
-  mysql:
+  dbserver:
     build:
       context: .
-      dockerfile: ./mysql/Dockerfile
+      dockerfile: ./dbserver/Dockerfile
     ports:
       - 3306:3306
     environment:
       - MYSQL_DATABASE
       - MYSQL_ROOT_PASSWORD
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "mysql"]
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "dbserver"]
       timeout: 20s
       retries: 10
