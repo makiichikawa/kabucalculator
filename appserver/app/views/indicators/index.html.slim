@@ -2,11 +2,11 @@ h1 Indicators Index
 
 table
   thead
-		tr
-			th 銘柄CD
-			th 現在価格
+    tr
+      th 銘柄CD
+      th 現在価格
   tbody
     - @indicators.each do |indicator|
-			tr
-				td = indicator.symbol
-				td = indicator.price
+      tr
+        td = indicator.symbol
+        td = indicator.price
