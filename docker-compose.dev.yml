@@ -24,8 +24,12 @@ services:
     build:
       context: .
       dockerfile: ./batch/Dockerfile
+    command: >
+      sh -c "cd lib && python main.py && /bin/bash"
     networks:
       - dbservernetwork
+    depends_on:
+      - dbserver
     volumes:
       - type: bind
         source: ./batch/lib
