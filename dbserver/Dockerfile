@@ -1,5 +1,5 @@
 FROM mysql:5.7
 
-ADD ./dbserver/my.conf /etc/mysql/conf.d/my.conf
+COPY ./dbserver/my.conf /etc/mysql/conf.d/my.cnf
 
 CMD ["mysqld"]
