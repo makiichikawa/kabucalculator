@@ -158,7 +158,7 @@ class TestIndicators(unittest.TestCase):
                 initial_price=100,
                 current_price=120
             ),
-            float(0.35)
+            float(-0.35)
         )
 
 
