@@ -127,7 +127,7 @@ class Indicators:
         else:
             rate = (
                 float(
-                    Decimal(str(upper_probability)) - Decimal('0.5')
+                    Decimal('0.5') - Decimal(str(upper_probability))
                 )
             )
             return rate
