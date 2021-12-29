@@ -72,7 +72,7 @@ class DBRegister:
             create_sql = """
                 CREATE TABLE IF NOT EXISTS indicators (
                 `id` int auto_increment primary key,
-                `symbol` varchar(4) not null,
+                `symbol` varchar(5) not null,
                 `price` int(11) not null,
                 `myuhats` double(15,14) not null,
                 `sigmahats` double(15,14) not null,
