@@ -31,8 +31,8 @@ class TestDBRegister(unittest.TestCase):
     def test_db_insert(self):
         self.dbregister.db_insert(self.values)
         table = os.getenv('DB_TABLE')
-        columns = 'symbol, price, myuhat_short, '\
-                  'sigmahat_short, probability_short, '\
+        columns = 'symbol, price, '\
+                  'myuhat_short, sigmahat_short, probability_short, '\
                   'myuhat_medium, sigmahat_medium, probability_medium, '\
                   'myuhat_long, sigmahat_long, probability_long'
         self.dbregister.cursor.execute(f'SELECT {columns} FROM {table}')
