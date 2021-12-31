@@ -1,34 +1,25 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
 kabu_a:
   symbol: 1234
   price: 100
-  myuhats: 0.02937019630284
-  sigmahats: 0.02434354311219
-  probs: -0.43978972768292
-  myuhatm: -0.02937019630284
-  sigmahatm: 0.02434354311219
-  probm: 0.43978972768292
-  myuhatl: 0.02937019630284
-  sigmahatl: 0.02434354311219
-  probl: -0.43978972768292
+  myuhat_short: 0.02937019630284
+  sigmahat_short: 0.02434354311219
+  probability_short: -0.43978972768292
+  myuhat_medium: -0.02937019630284
+  sigmahat_medium: 0.02434354311219
+  probability_medium: 0.43978972768292
+  myuhat_long: 0.02937019630284
+  sigmahat_long: 0.02434354311219
+  probability_long: -0.43978972768292
 
-# column: value
-#
 kabu_b:
   symbol: 1235
   price: 101
-  myuhats: 0.02937019630281
-  sigmahats: 0.02434354311211
-  probs: -0.43978972768291
-  myuhatm: -0.02937019630281
-  sigmahatm: 0.02434354311211
-  probm: 0.43978972768291
-  myuhatl: 0.02937019630281
-  sigmahatl: 0.02434354311211
-  probl: -0.43978972768291
-# column: value
+  myuhat_short: 0.02937019630281
+  sigmahat_short: 0.02434354311211
+  probability_short: -0.43978972768291
+  myuhat_medium: -0.02937019630281
+  sigmahat_medium: 0.02434354311211
+  probability_medium: 0.43978972768291
+  myuhat_long: 0.02937019630281
+  sigmahat_long: 0.02434354311211
+  probability_long: -0.43978972768291

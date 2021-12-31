@@ -13,17 +13,17 @@
 ActiveRecord::Schema.define(version: 0) do
 
   create_table "indicators", id: :integer, charset: "utf8mb4", force: :cascade do |t|
-    t.string "symbol", limit: 4, null: false
+    t.string "symbol", limit: 5, null: false
     t.integer "price", null: false
-    t.float "myuhats", limit: 53, null: false
-    t.float "sigmahats", limit: 53, null: false
-    t.float "probs", limit: 53, null: false
-    t.float "myuhatm", limit: 53, null: false
-    t.float "sigmahatm", limit: 53, null: false
-    t.float "probm", limit: 53, null: false
-    t.float "myuhatl", limit: 53, null: false
-    t.float "sigmahatl", limit: 53, null: false
-    t.float "probl", limit: 53, null: false
+    t.float "myuhat_short", limit: 53, null: false
+    t.float "sigmahat_short", limit: 53, null: false
+    t.float "probability_short", limit: 53, null: false
+    t.float "myuhat_medium", limit: 53, null: false
+    t.float "sigmahat_medium", limit: 53, null: false
+    t.float "probability_medium", limit: 53, null: false
+    t.float "myuhat_long", limit: 53, null: false
+    t.float "sigmahat_long", limit: 53, null: false
+    t.float "probability_long", limit: 53, null: false
     t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.timestamp "update_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
   end
