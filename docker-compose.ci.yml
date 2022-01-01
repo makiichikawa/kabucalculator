@@ -10,6 +10,13 @@ services:
         condition: service_healthy
     links:
       - dbserver
+    environment:
+      - DB_HOST
+      - DB_PORT
+      - DB_DATABASE
+      - DB_USERNAME
+      - DB_PASSWORD
+    tty: true
 
   batch:
     build:
