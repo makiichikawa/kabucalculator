@@ -34,7 +34,6 @@ jobs:
 
       - name: Run Lint on appserver
         run : |
-          docker ps
           docker exec -i kabucalculator_appserver_1 bash -c "rubocop && exit"
 
       - name: Run Tests on appserver
