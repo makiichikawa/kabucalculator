@@ -2,6 +2,6 @@
 
 class Api::IndicatorsController < ApplicationController
   def index
-    @Indicators = Indicator.order(:id)
+    @indicators = Indicator.order(:id)
   end
 end
