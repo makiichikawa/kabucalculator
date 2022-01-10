@@ -1,23 +1,16 @@
-<template>
-  <table>
-    <thead>
-      <tr>
-        <th>銘柄CD</th>
-        <th>現在価格</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="indicators in allIndicators"
-          v-bind:key="indicators.symbol">
-        <td>
-          {{indicators.symbol}}
-        </td>
-        <td>
-          {{indicators.price}}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<template lang="pug">
+  table#indicators-table
+    thead
+      tr
+        th 銘柄CD
+        th 現在価格
+    tbody
+      tr(
+        v-for="indicators in allIndicators"
+        v-bind:key="indicators.symbol"
+      )
+        td {{indicators.symbol}}
+        td {{indicators.price}}
 </template>
 
 <script>
