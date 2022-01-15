@@ -10,13 +10,22 @@ services:
         condition: service_healthy
     links:
       - dbserver
+      - selenium_chrome
     environment:
       - DB_HOST
       - DB_PORT
       - DB_DATABASE
       - DB_USERNAME
       - DB_PASSWORD
+      - SELENIUM_DRIVER_URL
     tty: true
+
+  selenium_chrome:
+    image: selenium/standalone-chrome-debug:latest
+    logging:
+      driver: none
+    ports:
+      - "4444:4444"
 
   batch:
     build:

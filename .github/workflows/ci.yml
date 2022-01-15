@@ -21,6 +21,7 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: password
           DB_TABLE: indicators
+          SELENIUM_DRIVER_URL: http://selenium_chrome:4444/wd/hub
         run: |
           docker-compose -f docker-compose.ci.yml up -d --remove-orphans
 
@@ -38,4 +39,4 @@ jobs:
 
       - name: Run Tests on appserver
         run: |
-          docker exec -i kabucalculator_appserver_1 bash -c "bin/setup && rails test"
+          docker exec -i kabucalculator_appserver_1 bash -c "bin/setup && rails test:all"
