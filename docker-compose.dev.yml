@@ -15,10 +15,22 @@ services:
       - 3000:3000
     depends_on:
       - dbserver
+      - selenium_chrome
     networks:
       - dbservernetwork
+      - browsernetwork
     env_file:
       - ./.env
+
+  # システムテスト用
+  selenium_chrome:
+    image: selenium/standalone-chrome-debug:latest
+    logging:
+      driver: none
+    ports:
+      - "4444:4444"
+    networks:
+      - browsernetwork
 
   batch:
     build:
@@ -60,6 +72,7 @@ services:
 
 networks:
   dbservernetwork:
+  browsernetwork:
 
 volumes:
   dbserver:
