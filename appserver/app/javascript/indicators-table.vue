@@ -1,41 +1,68 @@
 <template lang="pug">
-  table#indicators-table
-    thead
-      tr
-        th 銘柄CD
-        th 現在価格
-        th 短期上昇率・下降率
-        th 短期リターン
-        th 短期リスク
-        th 中期上昇率・下降率
-        th 中期リターン
-        th 中期リスク
-        th 長期上昇率・下降率
-        th 長期リターン
-        th 長期リスク
-
-    tbody
-      tr(
-        v-for="indicators in allIndicators"
-        v-bind:key="indicators.symbol"
+  v-app
+    v-container
+      v-data-table(
+        :headers='headers'
+        :items='allIndicators'
       )
-        td {{indicators.symbol}}
-        td {{indicators.price}}
-        td {{indicators.probability_short | addPercent}}
-        td {{indicators.myuhat_short}}
-        td {{indicators.sigmahat_short}}
-        td {{indicators.probability_medium | addPercent}}
-        td {{indicators.myuhat_medium}}
-        td {{indicators.sigmahat_medium}}
-        td {{indicators.probability_long | addPercent}}
-        td {{indicators.myuhat_long}}
-        td {{indicators.sigmahat_long}}
+        template(v-slot:item.probability_short="{ item }")
+          | {{ item.probability_short | addPercent }}
+        template(v-slot:item.probability_medium="{ item }")
+          | {{ item.probability_medium | addPercent }}
+        template(v-slot:item.probability_long="{ item }")
+          | {{ item.probability_long | addPercent }}
 </template>
 
 <script>
 export default {
   data: function() {
     return {
+      headers: [
+        {
+          text: '銘柄',
+          value: 'symbol'
+        },
+        {
+          text: '現在価格',
+          value: 'price'
+        },
+        {
+          text: '短期上昇率・下降率',
+          value: 'probability_short'
+        },
+        {
+          text: '短期リターン',
+          value: 'myuhat_short'
+        },
+        {
+          text: '短期リスク',
+          value: 'sigmahat_short'
+        },
+        {
+          text: '中期上昇率・下降率',
+          value: 'probability_medium'
+        },
+        {
+          text: '中期リターン',
+          value: 'myuhat_medium'
+        },
+        {
+          text: '中期リスク',
+          value: 'sigmahat_medium'
+        },
+        {
+          text: '長期上昇率・下降率',
+          value: 'probability_long'
+        },
+        {
+          text: '長期リターン',
+          value: 'myuhat_long'
+        },
+        {
+          text: '長期リスク',
+          value: 'sigmahat_long'
+        }
+      ],
       allIndicators: []
     }
   },
