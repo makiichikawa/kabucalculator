@@ -5,12 +5,36 @@
         :headers='headers'
         :items='allIndicators'
       )
+        template(v-slot:item.price="{ item }")
+          div.text-right
+            | {{ item.price }}
         template(v-slot:item.probability_short="{ item }")
-          | {{ item.probability_short | addPercent }}
+          div.text-right
+            | {{ item.probability_short | addPercent }}
+        template(v-slot:item.myuhat_short="{ item }")
+          div.text-right
+            | {{ item.myuhat_short | addZero }}
+        template(v-slot:item.sigmahat_short="{ item }")
+          div.text-right
+            | {{ item.sigmahat_short | addZero }}
         template(v-slot:item.probability_medium="{ item }")
-          | {{ item.probability_medium | addPercent }}
+          div.text-right
+            | {{ item.probability_medium | addPercent }}
+        template(v-slot:item.myuhat_medium="{ item }")
+          div.text-right
+            | {{ item.myuhat_medium | addZero }}
+        template(v-slot:item.sigmahat_medium="{ item }")
+          div.text-right
+            | {{ item.sigmahat_medium | addZero }}
         template(v-slot:item.probability_long="{ item }")
-          | {{ item.probability_long | addPercent }}
+          div.text-right
+            | {{ item.probability_long | addPercent }}
+        template(v-slot:item.myuhat_long="{ item }")
+          div.text-right
+            | {{ item.myuhat_long | addZero }}
+        template(v-slot:item.sigmahat_long="{ item }")
+          div.text-right
+            | {{ item.sigmahat_long | addZero }}
 </template>
 
 <script>
@@ -72,7 +96,11 @@ export default {
   filters: {
     addPercent: function(value){
       if (!value) return ''
-      return String(value) + '%'
+      return String(value.toFixed(2)) + '%'
+    },
+    addZero: function(value){
+      if (!value) return ''
+      return String(value.toFixed(4))
     }
   },
   methods: {
