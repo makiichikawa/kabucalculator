@@ -1,6 +1,6 @@
 <template lang="pug">
   v-app
-    v-container
+    v-container.base
       v-data-table(
         :headers='headers'
         :items='allIndicators'
@@ -131,3 +131,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.v-data-table >>> .v-data-table-header {
+  background-color: var(--v-primary-base);
+}
+.v-data-table >>> .v-data-table-header tr th span{
+  color: var(--v-primarychar-base);
+}
+</style>
