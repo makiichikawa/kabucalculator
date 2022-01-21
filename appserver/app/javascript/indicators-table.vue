@@ -5,6 +5,7 @@
         :headers='headers'
         :items='allIndicators'
         item-key='symbol'
+        multi-sort
       )
         template(v-slot:item.price="{ item }")
           div.text-right
