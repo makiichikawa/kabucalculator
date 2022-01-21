@@ -1,7 +1,8 @@
+import 'vuetify/dist/vuetify.min.css'
+import '@mdi/font/css/materialdesignicons.css'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 Vue.use(Vuetify)
-import 'vuetify/dist/vuetify.min.css'
 import IndicatorsTable from './indicators-table.vue'
 
 const vuetify = new Vuetify({

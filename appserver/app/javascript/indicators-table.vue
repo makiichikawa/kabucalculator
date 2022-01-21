@@ -44,57 +44,46 @@ export default {
     return {
       headers: [
         {
-          align: 'end',
           text: '銘柄',
           value: 'symbol'
         },
         {
-          align: 'end',
           text: '現在価格',
           value: 'price'
         },
         {
-          align: 'end',
           text: '短期上昇率・下降率',
           value: 'probability_short'
         },
         {
-          align: 'end',
           text: '短期リターン',
           value: 'myuhat_short'
         },
         {
-          align: 'end',
           text: '短期リスク',
           value: 'sigmahat_short'
         },
         {
-          align: 'end',
           text: '中期上昇率・下降率',
           value: 'probability_medium'
         },
         {
-          align: 'end',
           text: '中期リターン',
           value: 'myuhat_medium'
         },
         {
-          align: 'end',
           text: '中期リスク',
           value: 'sigmahat_medium'
         },
         {
-          align: 'end',
           text: '長期上昇率・下降率',
           value: 'probability_long'
         },
         {
-          align: 'end',
           text: '長期リターン',
           value: 'myuhat_long'
         },
         {
-          align: 'end',
           text: '長期リスク',
           value: 'sigmahat_long'
         }
@@ -149,5 +138,8 @@ export default {
 }
 .v-data-table >>> .v-data-table-header tr th span{
   color: var(--v-primarychar-base);
+}
+.v-data-table >>> .v-data-table-header i.v-icon.v-icon{
+  color: var(--v-primarychar-base) !important;
 }
 </style>
