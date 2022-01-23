@@ -3,7 +3,7 @@ import '@mdi/font/css/materialdesignicons.css'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 Vue.use(Vuetify)
-import IndicatorsTable from './indicators-table.vue'
+import main from './main.vue'
 
 const vuetify = new Vuetify({
   theme: {
@@ -11,8 +11,7 @@ const vuetify = new Vuetify({
       light: {
         base: '#eceff1',
         primary: '#263238',
-        accent: '#ff9800',
-        primarychar: '#ffffff'
+        accent: '#ff9800'
       },
     },
     options: {
@@ -23,6 +22,6 @@ const vuetify = new Vuetify({
 document.addEventListener('DOMContentLoaded', () => {
   new Vue({
     vuetify,
-    render: h => h(IndicatorsTable)
+    render: h => h(main)
   }).$mount('#js-indicators-table-vue')
 })
