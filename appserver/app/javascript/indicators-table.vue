@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     v-container.base
-      v-data-table(
+      v-data-table.ma-1(
         :headers='headers'
         :items='allIndicators'
         item-key='symbol'
@@ -41,6 +41,7 @@
 
 <script>
 export default {
+  name: 'IndicatorsTable',
   data: function() {
     return {
       headers: [
@@ -138,9 +139,9 @@ export default {
   background-color: var(--v-primary-base);
 }
 .v-data-table >>> .v-data-table-header tr th span{
-  color: var(--v-primarychar-base);
+  color: var(--v-base-lighten1);
 }
 .v-data-table >>> .v-data-table-header i.v-icon.v-icon{
-  color: var(--v-primarychar-base) !important;
+  color: var(--v-base-lighten1) !important;
 }
 </style>
