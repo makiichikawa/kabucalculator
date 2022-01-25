@@ -13,7 +13,6 @@ import IndicatorsTable from './indicators-table.vue'
 import IndicatorsFiltering from './indicators-filtering.vue'
 
 export default {
-  name: 'main',
   components: {
     'Table': IndicatorsTable,
     'Filtering': IndicatorsFiltering
