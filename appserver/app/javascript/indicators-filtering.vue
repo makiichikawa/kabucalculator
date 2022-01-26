@@ -139,7 +139,7 @@ export default {
     }
   },
   methods: {
-    getExtractionConditions: function() {
+    emitExtractionConditions: function() {
       for(let key in this.conditions) {
         if(!(Object.keys(this.conditions[key]).length)) {
           delete this.conditions[key]
