@@ -5,18 +5,30 @@
     )
       v-col(cols='12' xs='12' sm='5')
         v-text-field(
-          hint='下限' dense
+          hint='下限'
+          dense
+          v-on:input="emitLowerValue"
         )
       v-col.text-center(cols='12' xs='12' sm='2')
         | ~
       v-col(cols='12' xs='12' sm='5')
         v-text-field(
-          hint='上限' dense
+          hint='上限'
+          dense
+          v-on:input="emitUpperValue"
         )
 </template>
 
 <script>
 export default {
-  name: 'UpperLowerField'
+  name: 'UpperLowerField',
+  methods:{
+    emitLowerValue: function(value) {
+      this.$emit('input-lower-value', value)
+    },
+    emitUpperValue: function(value) {
+      this.$emit('input-upper-value', value)
+    }
+  }
 }
 </script>
