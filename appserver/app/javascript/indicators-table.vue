@@ -3,7 +3,7 @@
     v-container.base
       v-data-table.ma-1(
         :headers='headers'
-        :items='allIndicators'
+        :items='apiIndicators'
         item-key='symbol'
         multi-sort
       )
@@ -89,13 +89,10 @@ export default {
           text: '長期リスク',
           value: 'sigmahat_long'
         }
-      ],
-      allIndicators: []
+      ]
     }
   },
-  created() {
-    this.getIndicators()
-  },
+  props: ['apiIndicators'],
   filters: {
     addPercent: function(value){
       if (!value) return ''
@@ -104,31 +101,6 @@ export default {
     addZero: function(value){
       if (!value) return ''
       return String(value.toFixed(4))
-    }
-  },
-  methods: {
-    token() {
-      const meta = document.querySelector('meta[name="csrf-token"]')
-      return meta ? meta.getAttribute('content') : ''
-    },
-    getIndicators() {
-      fetch('/api/indicators', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': this.token()
-        },
-        credentials: 'same-origin',
-        redirect: 'manual'
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          this.allIndicators = json
-        })
-        .catch((error) => {
-          console.warn('Failed to parsing', error)
-        })
     }
   }
 }
