@@ -3,7 +3,9 @@
     v-container
       v-row
         v-col(cols='12')
-          Filtering
+          Filtering(
+            v-on:conditions='executeQuery($event)'
+          )
         v-col(cols='12')
           Table(
             v-bind:apiIndicators='apiIndicators'
@@ -21,7 +23,8 @@ export default {
   },
   data: function() {
     return {
-      apiIndicators: []
+      apiIndicators: [],
+      url: '/api/indicators'
     }
   },
   created() {
@@ -33,7 +36,7 @@ export default {
       return meta ? meta.getAttribute('content') : ''
     },
     getIndicators() {
-      fetch('/api/indicators', {
+      fetch(this.url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
@@ -50,6 +53,25 @@ export default {
         .catch((error) => {
           console.warn('Failed to parsing', error)
         })
+    },
+    executeQuery: function(conditions) {
+      this.setQueryParams(conditions)
+      this.getIndicators()
+      console.log(this.url)
+    },
+    setQueryParams: function(conditions) {
+      if (Object.keys(conditions).length) {
+        const params = []
+        for(let key in conditions) {
+          if(key === 'symbol') {
+            params.push('symbols={' + conditions['symbol'].join(',') + '}')
+          } else {
+
+            params.push(key + '=' + JSON.stringify(conditions[key]))
+          }
+        }
+        this.url = '/api/indicators?' + params.join('&')
+      }
     }
   }
 }
