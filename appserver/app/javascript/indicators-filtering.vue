@@ -108,7 +108,7 @@
             v-col.text-center(cols='12')
               v-btn(
                 color='primary'
-                v-on:click='getExtractionConditions'
+                v-on:click='emitExtractionConditions'
               )
                 div.font-weight-black(style='color: var(--v-base-lighten1)')
                   | 絞り込み
