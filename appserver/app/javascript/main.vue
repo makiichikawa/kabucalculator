@@ -57,17 +57,21 @@ export default {
     executeQuery: function(conditions) {
       this.setQueryParams(conditions)
       this.getIndicators()
-      console.log(this.url)
     },
     setQueryParams: function(conditions) {
       if (Object.keys(conditions).length) {
         const params = []
         for(let key in conditions) {
           if(key === 'symbol') {
-            params.push('symbols={' + conditions['symbol'].join(',') + '}')
+            params.push('symbol=' + conditions['symbol'].join(','))
           } else {
-
-            params.push(key + '=' + JSON.stringify(conditions[key]))
+            if(conditions[key].upper) {
+              params.push(key + 'uppervalue=' + conditions[key].upper)
+            }
+            console.log(params)
+            if (conditions[key].lower) {
+              params.push(key + 'lowervalue=' + conditions[key].lower)
+            }
           }
         }
         this.url = '/api/indicators?' + params.join('&')
