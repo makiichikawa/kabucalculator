@@ -27,8 +27,8 @@
             )
               | 現在価格
               Field(
-                v-on:input-upper-value="setCondition('upper', $event, conditions.price)"
-                v-on:input-lower-value="setCondition('lower', $event, conditions.price)"
+                v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.price)"
+                v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.price)"
               )
             v-col(
               cols='12' xs='12' sm='4'
@@ -38,72 +38,72 @@
             )
               | 短期上昇率・下降率
               Field(
-                v-on:input-upper-value="setCondition('upper', $event, conditions.probability_short)"
-                v-on:input-lower-value="setCondition('lower', $event, conditions.probability_short)"
+                v-on:input-upper-value="setProbabilityCondition('upper', $event, conditions.probability_short)"
+                v-on:input-lower-value="setProbabilityCondition('lower', $event, conditions.probability_short)"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
             )
               | 短期リターン
               Field(
-                v-on:input-upper-value="setCondition('upper', $event, conditions.myuhat_short)"
-                v-on:input-lower-value="setCondition('lower', $event, conditions.myuhat_short)"
+                v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.myuhat_short)"
+                v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.myuhat_short)"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
             )
               | 短期リスク
               Field(
-                v-on:input-upper-value="setCondition('upper', $event, conditions.sigmahat_short)"
-                v-on:input-lower-value="setCondition('lower', $event, conditions.sigmahat_short)"
+                v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.sigmahat_short)"
+                v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.sigmahat_short)"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
             )
               | 中期上昇率・下降率
               Field(
-                v-on:input-upper-value="setCondition('upper', $event, conditions.probability_medium)"
-                v-on:input-lower-value="setCondition('lower', $event, conditions.probability_medium)"
+                v-on:input-upper-value="setProbabilityCondition('upper', $event, conditions.probability_medium)"
+                v-on:input-lower-value="setProbabilityCondition('lower', $event, conditions.probability_medium)"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
             )
               | 中期リターン
               Field(
-                v-on:input-upper-value="setCondition('upper', $event, conditions.myuhat_medium)"
-                v-on:input-lower-value="setCondition('lower', $event, conditions.myuhat_medium)"
+                v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.myuhat_medium)"
+                v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.myuhat_medium)"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
             )
               | 中期リスク
               Field(
-                v-on:input-upper-value="setCondition('upper', $event, conditions.sigmahat_medium)"
-                v-on:input-lower-value="setCondition('lower', $event, conditions.sigmahat_medium)"
+                v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.sigmahat_medium)"
+                v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.sigmahat_medium)"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
             )
               | 長期上昇率・下降率
               Field(
-                v-on:input-upper-value="setCondition('upper', $event, conditions.probability_long)"
-                v-on:input-lower-value="setCondition('lower', $event, conditions.probability_long)"
+                v-on:input-upper-value="setProbabilityCondition('upper', $event, conditions.probability_long)"
+                v-on:input-lower-value="setProbabilityCondition('lower', $event, conditions.probability_long)"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
             )
               | 長期リターン
               Field(
-                v-on:input-upper-value="setCondition('upper', $event, conditions.myuhat_long)"
-                v-on:input-lower-value="setCondition('lower', $event, conditions.myuhat_long)"
+                v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.myuhat_long)"
+                v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.myuhat_long)"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
             )
               | 長期リスク
               Field(
-                v-on:input-upper-value="setCondition('upper', $event, conditions.sigmahat_long)"
-                v-on:input-lower-value="setCondition('lower', $event, conditions.sigmahat_long)"
+                v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.sigmahat_long)"
+                v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.sigmahat_long)"
               )
             v-col.text-center(cols='12')
               v-btn(
@@ -175,8 +175,12 @@ export default {
     setSymbolCondition: function(symbols) {
       this.conditions.symbol = symbols.replace(/\s+/, ',')
     },
-    setCondition: function(upper_or_lower, value, condition) {
+    setPriceMyuSigmaCondition: function(upper_or_lower, value, condition) {
       condition[upper_or_lower] = value
+    },
+    setProbabilityCondition: function(upper_or_lower, value, condition) {
+      const originalValue = parseInt(value) / 100
+      condition[upper_or_lower] = String(originalValue)
     }
   }
 }
