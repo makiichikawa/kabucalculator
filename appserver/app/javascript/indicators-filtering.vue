@@ -125,16 +125,46 @@ export default {
     return {
       conditions: {
         symbol: [],
-        price: {},
-        probability_short: {},
-        myuhat_short: {},
-        sigmahat_short: {},
-        probability_medium: {},
-        myuhat_medium: {},
-        sigmahat_medium: {},
-        probability_long: {},
-        myuhat_long: {},
-        sigmahat_long: {}
+        price: {
+          upper: '',
+          lower: ''
+        },
+        probability_short: {
+          upper: '',
+          lower: ''
+        },
+        myuhat_short: {
+          upper: '',
+          lower: ''
+        },
+        sigmahat_short: {
+          upper: '',
+          lower: ''
+        },
+        probability_medium: {
+          upper: '',
+          lower: ''
+        },
+        myuhat_medium: {
+          upper: '',
+          lower: ''
+        },
+        sigmahat_medium: {
+          upper: '',
+          lower: ''
+        },
+        probability_long: {
+          upper: '',
+          lower: ''
+        },
+        myuhat_long: {
+          upper: '',
+          lower: ''
+        },
+        sigmahat_long: {
+          upper: '',
+          lower: ''
+        }
       }
     }
   },
