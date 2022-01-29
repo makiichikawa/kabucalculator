@@ -124,7 +124,7 @@ export default {
   data: function() {
     return {
       conditions: {
-        symbol: [],
+        symbol: '',
         price: {
           upper: '',
           lower: ''
@@ -170,15 +170,10 @@ export default {
   },
   methods: {
     emitExtractionConditions: function() {
-      for(let key in this.conditions) {
-        if(!(Object.keys(this.conditions[key]).length)) {
-          delete this.conditions[key]
-        }
-      }
       this.$emit('conditions', this.conditions)
     },
     setSymbolCondition: function(symbols) {
-      this.conditions.symbol = symbols.split(' ')
+      this.conditions.symbol = symbols.replace(/\s+/, ',')
     },
     setCondition: function(upper_or_lower, value, condition) {
       condition[upper_or_lower] = value

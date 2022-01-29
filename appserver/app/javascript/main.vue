@@ -62,13 +62,12 @@ export default {
       if (Object.keys(conditions).length) {
         const params = []
         for(let key in conditions) {
-          if(key === 'symbol') {
-            params.push('symbol=' + conditions['symbol'].join(','))
+          if ((key === 'symbol') && conditions[key]) {
+            params.push('symbol=' + conditions['symbol'])
           } else {
             if(conditions[key].upper) {
               params.push(key + 'uppervalue=' + conditions[key].upper)
             }
-            console.log(params)
             if (conditions[key].lower) {
               params.push(key + 'lowervalue=' + conditions[key].lower)
             }
