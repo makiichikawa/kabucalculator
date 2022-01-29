@@ -12,7 +12,7 @@
             | {{ item.price }}
         template(v-slot:item.probability_short="{ item }")
           div.text-right
-            | {{ item.probability_short | addPercent }}
+            | {{ item.probability_short | displayPercent }}
         template(v-slot:item.myuhat_short="{ item }")
           div.text-right
             | {{ item.myuhat_short | addZero }}
@@ -21,7 +21,7 @@
             | {{ item.sigmahat_short | addZero }}
         template(v-slot:item.probability_medium="{ item }")
           div.text-right
-            | {{ item.probability_medium | addPercent }}
+            | {{ item.probability_medium | displayPercent }}
         template(v-slot:item.myuhat_medium="{ item }")
           div.text-right
             | {{ item.myuhat_medium | addZero }}
@@ -30,7 +30,7 @@
             | {{ item.sigmahat_medium | addZero }}
         template(v-slot:item.probability_long="{ item }")
           div.text-right
-            | {{ item.probability_long | addPercent }}
+            | {{ item.probability_long | displayPercent }}
         template(v-slot:item.myuhat_long="{ item }")
           div.text-right
             | {{ item.myuhat_long | addZero }}
@@ -94,9 +94,9 @@ export default {
   },
   props: ['apiIndicators'],
   filters: {
-    addPercent: function(value){
+    displayPercent: function(value){
       if (!value) return ''
-      return String(value.toFixed(2)) + '%'
+      return String((value * 100).toFixed(2)) + '%'
     },
     addZero: function(value){
       if (!value) return ''

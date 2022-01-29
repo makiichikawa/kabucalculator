@@ -8,13 +8,13 @@ class IndicatorTest < ActiveSupport::TestCase
     expected = {
       'symbol' => '1234',
       'price' => 100,
-      'probability_short' => -43.98,
+      'probability_short' => -0.4398,
       'myuhat_short' => 0.0294,
       'sigmahat_short' => 0.0243,
-      'probability_medium' => 43.98,
+      'probability_medium' => 0.4398,
       'myuhat_medium' => -0.0294,
       'sigmahat_medium' => 0.0243,
-      'probability_long' => -43.98,
+      'probability_long' => -0.4398,
       'myuhat_long' => 0.0294,
       'sigmahat_long' => 0.0243
     }
