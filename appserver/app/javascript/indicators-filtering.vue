@@ -21,6 +21,7 @@
                     hint='銘柄コード'
                     dense
                     v-on:input='setSymbolCondition'
+                    id='symbol'
                   )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
@@ -29,6 +30,7 @@
               Field(
                 v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.price)"
                 v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.price)"
+                v-bind:idName="'price'"
               )
             v-col(
               cols='12' xs='12' sm='4'
@@ -40,6 +42,7 @@
               Field(
                 v-on:input-upper-value="setProbabilityCondition('upper', $event, conditions.probability_short)"
                 v-on:input-lower-value="setProbabilityCondition('lower', $event, conditions.probability_short)"
+                v-bind:idName="'probability-short'"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
@@ -48,6 +51,7 @@
               Field(
                 v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.myuhat_short)"
                 v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.myuhat_short)"
+                v-bind:idName="'myuhat-short'"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
@@ -56,6 +60,7 @@
               Field(
                 v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.sigmahat_short)"
                 v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.sigmahat_short)"
+                v-bind:idName="'sigmahat-short'"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
@@ -64,6 +69,7 @@
               Field(
                 v-on:input-upper-value="setProbabilityCondition('upper', $event, conditions.probability_medium)"
                 v-on:input-lower-value="setProbabilityCondition('lower', $event, conditions.probability_medium)"
+                v-bind:idName="'probability-medium'"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
@@ -72,6 +78,7 @@
               Field(
                 v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.myuhat_medium)"
                 v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.myuhat_medium)"
+                v-bind:idName="'myuhat-medium'"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
@@ -80,6 +87,7 @@
               Field(
                 v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.sigmahat_medium)"
                 v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.sigmahat_medium)"
+                v-bind:idName="'sigmahat-medium'"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
@@ -88,6 +96,7 @@
               Field(
                 v-on:input-upper-value="setProbabilityCondition('upper', $event, conditions.probability_long)"
                 v-on:input-lower-value="setProbabilityCondition('lower', $event, conditions.probability_long)"
+                v-bind:idName="'probability-long'"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
@@ -96,6 +105,7 @@
               Field(
                 v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.myuhat_long)"
                 v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.myuhat_long)"
+                v-bind:idName="'myuhat-long'"
               )
             v-col.text-sm-subtitle-2.text-xs-body-2(
               cols='12' xs='12' sm='4'
@@ -104,6 +114,7 @@
               Field(
                 v-on:input-upper-value="setPriceMyuSigmaCondition('upper', $event, conditions.sigmahat_long)"
                 v-on:input-lower-value="setPriceMyuSigmaCondition('lower', $event, conditions.sigmahat_long)"
+                v-bind:idName="'sigmahat-long'"
               )
             v-col.text-center(cols='12')
               v-btn(
