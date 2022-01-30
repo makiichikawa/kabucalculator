@@ -21,6 +21,8 @@ services:
       - browsernetwork
     env_file:
       - ./.env
+    stdin_open: true
+    tty: true
 
   # システムテスト用
   selenium_chrome:

@@ -1,9 +1,9 @@
 <template lang="pug">
   v-app
     v-container.base
-      v-data-table(
+      v-data-table.ma-1(
         :headers='headers'
-        :items='allIndicators'
+        :items='apiIndicators'
         item-key='symbol'
         multi-sort
       )
@@ -12,7 +12,7 @@
             | {{ item.price }}
         template(v-slot:item.probability_short="{ item }")
           div.text-right
-            | {{ item.probability_short | addPercent }}
+            | {{ item.probability_short | displayPercent }}
         template(v-slot:item.myuhat_short="{ item }")
           div.text-right
             | {{ item.myuhat_short | addZero }}
@@ -21,7 +21,7 @@
             | {{ item.sigmahat_short | addZero }}
         template(v-slot:item.probability_medium="{ item }")
           div.text-right
-            | {{ item.probability_medium | addPercent }}
+            | {{ item.probability_medium | displayPercent }}
         template(v-slot:item.myuhat_medium="{ item }")
           div.text-right
             | {{ item.myuhat_medium | addZero }}
@@ -30,7 +30,7 @@
             | {{ item.sigmahat_medium | addZero }}
         template(v-slot:item.probability_long="{ item }")
           div.text-right
-            | {{ item.probability_long | addPercent }}
+            | {{ item.probability_long | displayPercent }}
         template(v-slot:item.myuhat_long="{ item }")
           div.text-right
             | {{ item.myuhat_long | addZero }}
@@ -41,6 +41,7 @@
 
 <script>
 export default {
+  name: 'IndicatorsTable',
   data: function() {
     return {
       headers: [
@@ -88,46 +89,18 @@ export default {
           text: '長期リスク',
           value: 'sigmahat_long'
         }
-      ],
-      allIndicators: []
+      ]
     }
   },
-  created() {
-    this.getIndicators()
-  },
+  props: ['apiIndicators'],
   filters: {
-    addPercent: function(value){
+    displayPercent: function(value){
       if (!value) return ''
-      return String(value.toFixed(2)) + '%'
+      return String((value * 100).toFixed(2)) + '%'
     },
     addZero: function(value){
       if (!value) return ''
       return String(value.toFixed(4))
-    }
-  },
-  methods: {
-    token() {
-      const meta = document.querySelector('meta[name="csrf-token"]')
-      return meta ? meta.getAttribute('content') : ''
-    },
-    getIndicators() {
-      fetch('/api/indicators', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': this.token()
-        },
-        credentials: 'same-origin',
-        redirect: 'manual'
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          this.allIndicators = json
-        })
-        .catch((error) => {
-          console.warn('Failed to parsing', error)
-        })
     }
   }
 }
@@ -138,9 +111,9 @@ export default {
   background-color: var(--v-primary-base);
 }
 .v-data-table >>> .v-data-table-header tr th span{
-  color: var(--v-primarychar-base);
+  color: var(--v-base-lighten1);
 }
 .v-data-table >>> .v-data-table-header i.v-icon.v-icon{
-  color: var(--v-primarychar-base) !important;
+  color: var(--v-base-lighten1) !important;
 }
 </style>
