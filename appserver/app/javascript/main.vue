@@ -65,7 +65,7 @@ export default {
           if ((key === 'symbol') && conditions[key]) {
             params.push('symbol=' + conditions['symbol'])
           } else {
-            if(conditions[key].upper) {
+            if (conditions[key].upper) {
               params.push(key + 'uppervalue=' + conditions[key].upper)
             }
             if (conditions[key].lower) {
