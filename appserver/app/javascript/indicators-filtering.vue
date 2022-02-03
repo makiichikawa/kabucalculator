@@ -190,8 +190,12 @@ export default {
       condition[upper_or_lower] = value
     },
     setProbabilityCondition: function(upper_or_lower, value, condition) {
-      const originalValue = parseInt(value) / 100
-      condition[upper_or_lower] = String(originalValue)
+      if (value) {
+        const originalValue = parseInt(value) / 100
+        condition[upper_or_lower] = String(originalValue)
+      } else {
+        condition[upper_or_lower] = ''
+      }
     }
   }
 }
