@@ -49,7 +49,7 @@ class Indicators:
                 )
             )
             try:
-                sleep(1.5)
+                sleep(3)
                 indicators_by_symbol = self._calculate_indicators_by(symbol)
             except (IndexError, ZeroDivisionError) as error:
                 logger.warning(f"symbol:{symbol} error:{error.args}")
