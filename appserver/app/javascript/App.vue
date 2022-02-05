@@ -61,9 +61,9 @@ export default {
     setQueryParams: function(conditions) {
       if (Object.keys(conditions).length) {
         const params = []
-        for(let key in conditions) {
+        for(const key in conditions) {
           if ((key === 'symbol') && conditions[key]) {
-            params.push('symbol=' + conditions['symbol'])
+            params.push('symbol=' + conditions.symbol)
           } else {
             if (conditions[key].upper) {
               params.push(key + 'uppervalue=' + conditions[key].upper)

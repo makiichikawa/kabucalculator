@@ -2,8 +2,8 @@ import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.css'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
+import App from './App.vue'
 Vue.use(Vuetify)
-import main from './main.vue'
 
 const vuetify = new Vuetify({
   theme: {
@@ -22,6 +22,6 @@ const vuetify = new Vuetify({
 document.addEventListener('DOMContentLoaded', () => {
   new Vue({
     vuetify,
-    render: h => h(main)
+    render: h => h(App)
   }).$mount('#js-indicators-table-vue')
 })
