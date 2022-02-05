@@ -23,3 +23,29 @@ kabu_b:
   myuhat_long: 0.02937019630281
   sigmahat_long: 0.02434354311211
   probability_long: -0.43978972768291
+
+kabu_c:
+  symbol: 1236
+  price: 102
+  myuhat_short: -0.02937019630281
+  sigmahat_short: 0.02434354311210
+  probability_short: -0.43978972768291
+  myuhat_medium: -0.02937019630281
+  sigmahat_medium: 0.02434354311212
+  probability_medium: -0.43978972768291
+  myuhat_long: -0.02937019630281
+  sigmahat_long: 0.02434354311210
+  probability_long: -0.43978972768291
+
+kabu_d:
+  symbol: 1237
+  price: 103
+  myuhat_short: 0.01031031031031
+  sigmahat_short: 0.01031031031031
+  probability_short: -0.10310310310310
+  myuhat_medium: -0.01031031031031
+  sigmahat_medium: 0.01031031031031
+  probability_medium: 0.10310310310310
+  myuhat_long: 0.01031031031031
+  sigmahat_long: 0.01031031031031
+  probability_long: -0.10310310310310
