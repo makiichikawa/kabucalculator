@@ -152,7 +152,7 @@ export default {
       this.$emit("conditions", this.conditions);
     },
     setSymbolCondition: function (symbols) {
-      this.conditions.symbol = symbols.replace(/\s+/, ",");
+      this.conditions.symbol = symbols.replace(/\s+/g, ",");
     },
     setPriceMyuSigmaCondition: function (upperOrLower, value, condition) {
       condition[upperOrLower] = value;
