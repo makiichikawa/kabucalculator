@@ -66,10 +66,10 @@ export default {
             params.push('symbol=' + conditions.symbol)
           } else {
             if (conditions[key].upper) {
-              params.push(key + 'uppervalue=' + conditions[key].upper)
+              params.push(key + '_uppervalue=' + conditions[key].upper)
             }
             if (conditions[key].lower) {
-              params.push(key + 'lowervalue=' + conditions[key].lower)
+              params.push(key + '_lowervalue=' + conditions[key].lower)
             }
           }
         }
