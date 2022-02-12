@@ -14,6 +14,8 @@ class Api::IndicatorsController < ApplicationController
                                .filter_by_probability_long(params[:probability_long_lowervalue], params[:probability_long_uppervalue])
                                .filter_by_myuhat_long(params[:myuhat_long_lowervalue], params[:myuhat_long_uppervalue])
                                .filter_by_sigmahat_long(params[:sigmahat_long_lowervalue], params[:sigmahat_long_uppervalue])
+                               .order(:symbol)
+                               .map(&:round)
   end
 
   private
