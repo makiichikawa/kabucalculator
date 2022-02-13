@@ -15,6 +15,7 @@ v-container.base
                   hint="銘柄コード",
                   dense,
                   v-on:input="setSymbolCondition"
+                  :rules="rules"
                 )
           v-col.text-sm-subtitle-2.text-xs-body-2(cols="12", xs="12", sm="4")
             | 現在価格
@@ -146,6 +147,16 @@ export default {
         },
       },
     };
+  },
+  computed: {
+    rules: function() {
+      const rules = []
+      const rule =
+        v => !v || v.match(/^(\d{4}\s*){1,}$/) ||
+          `4桁の整数のみ有効。スペースでつなげると複数検索可(1234 1235)`
+      rules.push(rule)
+      return rules
+    }
   },
   methods: {
     emitExtractionConditions: function () {
