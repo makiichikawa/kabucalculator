@@ -158,6 +158,12 @@ export default {
       return rules
     }
   },
+  mounted() {
+    document.addEventListener('keypress', this.submitOnEnter)
+  },
+  beforeDestroy() {
+    document.removeEventListener('keypress', this.submitOnEnter)
+  },
   methods: {
     emitExtractionConditions: function () {
       if (this.$refs.form.validate()) {
@@ -178,6 +184,11 @@ export default {
         condition[upperOrLower] = "";
       }
     },
+    submitOnEnter: function(event) {
+      if (event.keyCode === 13) {
+        this.emitExtractionConditions()
+      }
+    }
   },
 };
 </script>
