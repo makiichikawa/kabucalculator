@@ -5,7 +5,7 @@ v-container.base
       .font-weight-black(style="color: var(--v-base-lighten1)")
         | 検索条件
     v-col(cols="12")
-      v-form
+      v-form(ref="form")
         v-row(style="background: var(--v-base-lighten1)")
           v-col.text-sm-subtitle-2.text-xs-body-2(cols="12", xs="12", sm="4")
             | 銘柄
@@ -15,6 +15,7 @@ v-container.base
                   hint="銘柄コード",
                   dense,
                   v-on:input="setSymbolCondition"
+                  :rules="rules"
                 )
           v-col.text-sm-subtitle-2.text-xs-body-2(cols="12", xs="12", sm="4")
             | 現在価格
@@ -147,9 +148,27 @@ export default {
       },
     };
   },
+  computed: {
+    rules: function() {
+      const rules = []
+      const rule =
+        v => !v || v.match(/^(\d{4}\s*){1,}$/) ||
+          `4桁の整数のみ有効。スペースでつなげると複数検索可(1234 1235)`
+      rules.push(rule)
+      return rules
+    }
+  },
+  mounted() {
+    document.addEventListener('keypress', this.submitOnEnter)
+  },
+  beforeDestroy() {
+    document.removeEventListener('keypress', this.submitOnEnter)
+  },
   methods: {
     emitExtractionConditions: function () {
-      this.$emit("conditions", this.conditions);
+      if (this.$refs.form.validate()) {
+        this.$emit("conditions", this.conditions);
+      }
     },
     setSymbolCondition: function (symbols) {
       this.conditions.symbol = symbols.replace(/\s+/g, ",");
@@ -165,6 +184,11 @@ export default {
         condition[upperOrLower] = "";
       }
     },
+    submitOnEnter: function(event) {
+      if (event.keyCode === 13) {
+        this.emitExtractionConditions()
+      }
+    }
   },
 };
 </script>
