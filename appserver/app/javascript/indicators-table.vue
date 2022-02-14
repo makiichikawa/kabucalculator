@@ -1,42 +1,47 @@
 <template lang="pug">
-v-app
   v-container.base
-    v-data-table.ma-1(
-      :headers="headers",
-      :items="apiIndicators",
-      item-key="symbol",
-      multi-sort
-    )
-      template(v-slot:item.price="{ item }")
-        .text-right
-          | {{ item.price }}
-      template(v-slot:item.probability_short="{ item }")
-        .text-right
-          | {{ item.probability_short | displayPercent }}
-      template(v-slot:item.myuhat_short="{ item }")
-        .text-right
-          | {{ item.myuhat_short | addZero }}
-      template(v-slot:item.sigmahat_short="{ item }")
-        .text-right
-          | {{ item.sigmahat_short | addZero }}
-      template(v-slot:item.probability_medium="{ item }")
-        .text-right
-          | {{ item.probability_medium | displayPercent }}
-      template(v-slot:item.myuhat_medium="{ item }")
-        .text-right
-          | {{ item.myuhat_medium | addZero }}
-      template(v-slot:item.sigmahat_medium="{ item }")
-        .text-right
-          | {{ item.sigmahat_medium | addZero }}
-      template(v-slot:item.probability_long="{ item }")
-        .text-right
-          | {{ item.probability_long | displayPercent }}
-      template(v-slot:item.myuhat_long="{ item }")
-        .text-right
-          | {{ item.myuhat_long | addZero }}
-      template(v-slot:item.sigmahat_long="{ item }")
-        .text-right
-          | {{ item.sigmahat_long | addZero }}
+    v-row.ma-1(style="background-color: var(--v-base-lighten5)")
+      v-col(cols="12")
+        v-data-table(
+          :headers="headers",
+          :items="apiIndicators",
+          item-key="symbol",
+          multi-sort
+        )
+          template(v-slot:item.price="{ item }")
+            .text-right
+              | {{ item.price }}
+          template(v-slot:item.probability_short="{ item }")
+            .text-right
+              | {{ item.probability_short | displayPercent }}
+          template(v-slot:item.myuhat_short="{ item }")
+            .text-right
+              | {{ item.myuhat_short | addZero }}
+          template(v-slot:item.sigmahat_short="{ item }")
+            .text-right
+              | {{ item.sigmahat_short | addZero }}
+          template(v-slot:item.probability_medium="{ item }")
+            .text-right
+              | {{ item.probability_medium | displayPercent }}
+          template(v-slot:item.myuhat_medium="{ item }")
+            .text-right
+              | {{ item.myuhat_medium | addZero }}
+          template(v-slot:item.sigmahat_medium="{ item }")
+            .text-right
+              | {{ item.sigmahat_medium | addZero }}
+          template(v-slot:item.probability_long="{ item }")
+            .text-right
+              | {{ item.probability_long | displayPercent }}
+          template(v-slot:item.myuhat_long="{ item }")
+            .text-right
+              | {{ item.myuhat_long | addZero }}
+          template(v-slot:item.sigmahat_long="{ item }")
+            .text-right
+              | {{ item.sigmahat_long | addZero }}
+      v-col.text-center(cols="12")
+        v-btn(color="primary", v-on:click="emitExtractionConditions")
+          .font-weight-black(style="color: var(--v-base-lighten1)")
+            | グラフでみる
 </template>
 
 <script>
