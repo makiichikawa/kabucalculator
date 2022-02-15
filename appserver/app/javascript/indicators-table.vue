@@ -39,14 +39,19 @@
             .text-right
               | {{ item.sigmahat_long | addZero }}
       v-col.text-center(cols="12")
-        v-btn(color="primary", v-on:click="emitExtractionConditions")
+        v-btn(color="primary", v-on:click="openGraph")
           .font-weight-black(style="color: var(--v-base-lighten1)")
             | グラフでみる
+        Graph(v-show="showGraph" v-on:close="closeGraph")
 </template>
 
 <script>
+import Graph from './indicators-graph.vue'
 export default {
   name: "IndicatorsTable",
+  components: {
+    Graph
+  },
   filters: {
     displayPercent: function (value) {
       if (!value) return "";
@@ -111,8 +116,17 @@ export default {
           value: "sigmahat_long",
         },
       ],
+      showGraph: false
     };
   },
+  methods: {
+    openGraph: function() {
+      this.showGraph = true
+    },
+    closeGraph: function() {
+      this.showGraph = false
+    }
+  }
 };
 </script>
 
