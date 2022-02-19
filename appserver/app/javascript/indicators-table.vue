@@ -42,15 +42,20 @@
         v-btn(color="primary", v-on:click="openGraph")
           .font-weight-black(style="color: var(--v-base-lighten1)")
             | グラフでみる
-        Graph(v-show="showGraph" v-on:close="closeGraph")
+        Overlay(
+          v-bind:indicatorsHeader="headers"
+          v-bind:indicatorsData="apiIndicators"
+          v-show="showGraph"
+          v-on:close="closeGraph"
+        )
 </template>
 
 <script>
-import Graph from './indicators-graph.vue'
+import Overlay from './graph-overlay.vue'
 export default {
   name: "IndicatorsTable",
   components: {
-    Graph
+    Overlay
   },
   filters: {
     displayPercent: function (value) {
