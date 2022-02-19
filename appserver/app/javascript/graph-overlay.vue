@@ -1,4 +1,3 @@
-/* eslint-disable vue/require-prop-types */
 <template lang="pug">
   v-container(id="overlay")
     v-row
