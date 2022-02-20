@@ -27,10 +27,6 @@ export default {
     Items
   },
   props: {
-    indicatorsHeader: {
-      type: Array,
-      default: () => []
-    },
     indicatorsData: {
       type: Array,
       default: () => []

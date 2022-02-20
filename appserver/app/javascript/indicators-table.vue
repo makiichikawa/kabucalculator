@@ -43,7 +43,6 @@
           .font-weight-black(style="color: var(--v-base-lighten1)")
             | グラフでみる
         Overlay(
-          v-bind:indicatorsHeader="headers"
           v-bind:indicatorsData="apiIndicators"
           v-show="showGraph"
           v-on:close="closeGraph"
