@@ -1,12 +1,16 @@
 <template lang="pug">
   v-container(id="overlay")
-    v-row
-      v-col(cols='12')
+    v-row.base.ma-1
+      v-col(cols='12' xs='12' sm='8')
         Graph(
           id="graph"
           v-bind:chart-data='graphData'
           v-bind:options='options'
           :style='graphStyle'
+        )
+      v-col(cols='12' xs='12' sm='4')
+        Items(
+          v-on:graph-items='setGraphItems'
         )
       v-col(cols='12')
         v-btn(color="primary", v-on:click="$emit('close')")
@@ -15,10 +19,12 @@
 </template>
 <script>
 import Graph from './indicators-graph.vue'
+import Items from './graph-items.vue'
 export default {
   name: "GraphOverlay",
   components: {
-    Graph
+    Graph,
+    Items
   },
   props: {
     indicatorsHeader: {
@@ -28,6 +34,10 @@ export default {
     indicatorsData: {
       type: Array,
       default: () => []
+    },
+    graphItems: {
+      type: Array,
+      default: () => ['myuhat_short', 'sigmahat_short']
     }
   },
   data: function() {
@@ -56,7 +66,7 @@ export default {
               },
               scaleLabel: {
                 display: true,
-                labelString: '短期リターン',
+                labelString: this.graphItems[0],
                 fontColor: this.$vuetify.theme.themes.light.base,
               }
             }
@@ -74,7 +84,7 @@ export default {
               },
               scaleLabel: {
                 display: true,
-                labelString: '短期リスク',
+                labelString: this.graphItems[1],
                 fontColor: this.$vuetify.theme.themes.light.base,
               }
             }
@@ -89,8 +99,7 @@ export default {
           }
         }
       },
-      height: window.innerHeight / 1.2,
-      graphItems: ['myuhat_short', 'sigmahat_short']
+      height: window.innerHeight / 1.2
     }
   },
   computed: {
@@ -116,7 +125,7 @@ export default {
       return {
         labels: data.labels,
         datasets:[{
-          label: '短期リターンと短期リスクの散布図',
+          label: this.graphItems[0] + 'と' + this.graphItems[1] + 'の関係',
           data: data.plotdata,
           backgroundColor: this.$vuetify.theme.themes.light.accent,
           pointStyle: 'circle',
@@ -124,13 +133,22 @@ export default {
         }],
       }
     },
-    graphStyle () {
+    graphStyle: function() {
       return {
         height: `${this.height}px`,
         position: 'relative'
       }
-    }
+    },
   },
+  methods: {
+    setGraphItems: function(items) {
+      for (const index of [0, 1]) {
+        this.$set(this.graphItems, index, items[index])
+      }
+      this.options.scales.xAxes[0].scaleLabel.labelString = items[0]
+      this.options.scales.yAxes[0].scaleLabel.labelString = items[1]
+    }
+  }
 }
 </script>
 <style>
