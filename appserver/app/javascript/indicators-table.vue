@@ -44,6 +44,8 @@
             | グラフでみる
         Overlay(
           v-bind:indicatorsData="apiIndicators"
+          v-bind:indicatorsItems="indicatorsItems"
+          v-bind:calculatedItems="calculatedItems"
           v-show="showGraph"
           v-on:close="closeGraph"
         )
@@ -71,55 +73,18 @@ export default {
       type: Object,
       default: () => {},
     },
+    indicatorsItems: {
+      type: Object,
+      default: () => {}
+    },
+    calculatedItems: {
+      type: Function,
+      default: () => []
+    }
   },
   data: function () {
     return {
-      headers: [
-        {
-          text: "銘柄",
-          value: "symbol",
-        },
-        {
-          text: "現在価格",
-          value: "price",
-        },
-        {
-          text: "短期上昇率・下降率",
-          value: "probability_short",
-        },
-        {
-          text: "短期リターン",
-          value: "myuhat_short",
-        },
-        {
-          text: "短期リスク",
-          value: "sigmahat_short",
-        },
-        {
-          text: "中期上昇率・下降率",
-          value: "probability_medium",
-        },
-        {
-          text: "中期リターン",
-          value: "myuhat_medium",
-        },
-        {
-          text: "中期リスク",
-          value: "sigmahat_medium",
-        },
-        {
-          text: "長期上昇率・下降率",
-          value: "probability_long",
-        },
-        {
-          text: "長期リターン",
-          value: "myuhat_long",
-        },
-        {
-          text: "長期リスク",
-          value: "sigmahat_long",
-        },
-      ],
+      headers: this.headerItems(),
       showGraph: false
     };
   },
@@ -129,6 +94,18 @@ export default {
     },
     closeGraph: function() {
       this.showGraph = false
+    },
+    headerItems: function() {
+      const headerItems = []
+      for (const key in this.indicatorsItems) {
+        headerItems.push(
+          {
+            text: this.indicatorsItems[key],
+            value: key
+          }
+        )
+      }
+      return headerItems
     }
   }
 };

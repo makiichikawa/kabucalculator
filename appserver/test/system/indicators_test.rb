@@ -11,8 +11,8 @@ class IndicatorsTest < ApplicationSystemTestCase
 
   test 'execute query of myuhat_medium condition' do
     visit indicators_path
-    fill_in 'myuhat-medium-lower-value', with: '-0.02937019630284'
-    fill_in 'myuhat-medium-upper-value', with: '-0.02937019630282'
+    fill_in 'myuhat_medium-lower-value', with: '-0.02937019630284'
+    fill_in 'myuhat_medium-upper-value', with: '-0.02937019630282'
     click_on '絞り込み'
     within('.v-data-table') do
       assert_selector('td', count: 11)
@@ -60,7 +60,7 @@ class IndicatorsTest < ApplicationSystemTestCase
       assert_text '正の数のみ有効'
       assert_text '数値のみ有効'
     end
-    fill_in 'myuhat-short-lower-value', with: '0'
+    fill_in 'myuhat_short-lower-value', with: '0'
     click_on '絞り込み'
     within('.v-data-table') do
       assert_selector('td', count: 44)
@@ -73,11 +73,11 @@ class IndicatorsTest < ApplicationSystemTestCase
 
   test 'validate probability' do
     visit indicators_path
-    fill_in 'probability-long-lower-value', with: '-100'
+    fill_in 'probability_long-lower-value', with: '-100'
     within('.v-form') do
       assert_text '-50～50のみ有効'
     end
-    fill_in 'myuhat-medium-lower-value', with: '-0.02'
+    fill_in 'myuhat_medium-lower-value', with: '-0.02'
     click_on '絞り込み'
     within('.v-data-table') do
       assert_selector('td', count: 44)

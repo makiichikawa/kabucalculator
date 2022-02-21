@@ -5,13 +5,13 @@
     )
       | {{rules[0]}}
     v-row(
-      v-for="item in indicatorItems" :key="item.label"
+      v-for="key in this.calculatedItems(indicatorsItems)"
     )
       v-col(cols='12')
         v-checkbox(
           v-model='selected'
-          v-bind:label='item.label'
-          v-bind:value='item.value'
+          v-bind:label='indicatorsItems[key]'
+          v-bind:value='key'
           :rules='rules'
           :hide-details='true'
         )
@@ -19,47 +19,19 @@
 <script>
 export default {
   name: 'GraphItems',
+  props: {
+    indicatorsItems: {
+      type: Object,
+      default: () => {}
+    },
+    calculatedItems: {
+      type: Function,
+      default: () => []
+    }
+  },
   data: function() {
     return {
       selected: ['myuhat_short', 'sigmahat_short'],
-      indicatorItems: [
-        {
-          label: '短期上昇率・下降率',
-          value: 'probability_short'
-        },
-        {
-          label: '短期リターン',
-          value: 'myuhat_short'
-        },
-        {
-          label: '短期リスク',
-          value: 'sigmahat_short'
-        },
-        {
-          label: '中期上昇率・下降率',
-          value: 'probability_medium'
-        },
-        {
-          label: '中期リターン',
-          value: 'myuhat_medium'
-        },
-        {
-          label: '中期リスク',
-          value: 'sigmahat_medium'
-        },
-        {
-          label: '長期上昇率・下降率',
-          value: 'probability_long'
-        },
-        {
-          label: '長期リターン',
-          value: 'myuhat_long'
-        },
-        {
-          label: '長期リスク',
-          value: 'sigmahat_long'
-        }
-      ],
       tooManyItems: false
     }
   },

@@ -11,6 +11,8 @@
       v-col(cols='12' xs='12' sm='4')
         Items(
           v-on:graph-items='setGraphItems'
+          v-bind:indicatorsItems='indicatorsItems'
+          v-bind:calculatedItems='calculatedItems'
         )
       v-col(cols='12')
         v-btn(color="primary", v-on:click="$emit('close')")
@@ -34,6 +36,14 @@ export default {
     graphItems: {
       type: Array,
       default: () => ['myuhat_short', 'sigmahat_short']
+    },
+    indicatorsItems: {
+      type: Object,
+      default: () => {}
+    },
+    calculatedItems: {
+      type: Function,
+      default: () => []
     }
   },
   data: function() {
@@ -62,7 +72,7 @@ export default {
               },
               scaleLabel: {
                 display: true,
-                labelString: this.graphItems[0],
+                labelString: this.indicatorsItems[this.graphItems[0]],
                 fontColor: this.$vuetify.theme.themes.light.base,
               }
             }
@@ -80,7 +90,7 @@ export default {
               },
               scaleLabel: {
                 display: true,
-                labelString: this.graphItems[1],
+                labelString: this.indicatorsItems[this.graphItems[1]],
                 fontColor: this.$vuetify.theme.themes.light.base,
               }
             }
@@ -121,7 +131,10 @@ export default {
       return {
         labels: data.labels,
         datasets:[{
-          label: this.graphItems[0] + 'と' + this.graphItems[1] + 'の関係',
+          label: this.indicatorsItems[this.graphItems[0]]
+            + 'と'
+            + this.indicatorsItems[this.graphItems[1]]
+            + 'の関係',
           data: data.plotdata,
           backgroundColor: this.$vuetify.theme.themes.light.accent,
           pointStyle: 'circle',
@@ -141,8 +154,8 @@ export default {
       for (const index of [0, 1]) {
         this.$set(this.graphItems, index, items[index])
       }
-      this.options.scales.xAxes[0].scaleLabel.labelString = items[0]
-      this.options.scales.yAxes[0].scaleLabel.labelString = items[1]
+      this.options.scales.xAxes[0].scaleLabel.labelString = this.indicatorsItems[items[0]]
+      this.options.scales.yAxes[0].scaleLabel.labelString = this.indicatorsItems[items[1]]
     }
   }
 }
