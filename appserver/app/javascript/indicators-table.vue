@@ -70,8 +70,8 @@ export default {
   },
   props: {
     apiIndicators: {
-      type: Object,
-      default: () => {},
+      type: Array,
+      default: () => [],
     },
     indicatorsItems: {
       type: Object,
