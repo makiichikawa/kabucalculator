@@ -170,6 +170,8 @@ export default {
     height: 100%;
     max-width: 100%;
     background-color: rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    overflow-y: scroll;
   }
   #graph{
     z-index: 2;
