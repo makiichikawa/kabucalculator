@@ -87,4 +87,29 @@ class IndicatorsTest < ApplicationSystemTestCase
       assert_text '1237'
     end
   end
+
+  test 'show indicators graph' do
+    visit indicators_path
+    click_on 'グラフでみる'
+    within('#graph-items') do
+      assert_text '短期上昇率・下降率'
+      assert_text '短期リターン'
+      assert_text '短期リスク'
+      assert_text '中期上昇率・下降率'
+      assert_text '中期リターン'
+      assert_text '中期リスク'
+      assert_text '長期上昇率・下降率'
+      assert_text '長期リターン'
+      assert_text '長期リスク'
+    end
+  end
+
+  test 'validate graph items' do
+    visit indicators_path
+    click_on 'グラフでみる'
+    within('#graph-items') do
+      find('label', text: '中期リターン', match: :first).click
+      assert_text '指標はふたつのみ有効'
+    end
+  end
 end

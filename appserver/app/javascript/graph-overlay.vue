@@ -10,6 +10,7 @@
         )
       v-col(cols='12' xs='12' sm='4')
         Items(
+          id="graph-items"
           v-on:graph-items='setGraphItems'
           v-bind:indicatorsItems='indicatorsItems'
           v-bind:calculatedItems='calculatedItems'
