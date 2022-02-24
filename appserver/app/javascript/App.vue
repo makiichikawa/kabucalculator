@@ -5,10 +5,14 @@
         v-col(cols='12')
           Filtering(
             v-on:conditions='executeQuery($event)'
+            v-bind:indicatorsItems='indicatorsItems'
+            v-bind:calculatedItems='calculatedItems'
           )
         v-col(cols='12')
           Table(
             v-bind:apiIndicators='apiIndicators'
+            v-bind:indicatorsItems='indicatorsItems'
+            v-bind:calculatedItems='calculatedItems'
           )
 </template>
 
@@ -24,7 +28,20 @@ export default {
   data: function() {
     return {
       apiIndicators: [],
-      url: '/api/indicators'
+      url: '/api/indicators',
+      indicatorsItems: {
+        symbol: '銘柄',
+        price: '現在価格',
+        probability_short: '短期上昇率・下降率',
+        myuhat_short: '短期リターン',
+        sigmahat_short: '短期リスク',
+        probability_medium: '中期上昇率・下降率',
+        myuhat_medium: '中期リターン',
+        sigmahat_medium: '中期リスク',
+        probability_long: '長期上昇率・下降率',
+        myuhat_long: '長期リターン',
+        sigmahat_long: '長期リスク'
+      }
     }
   },
   created() {
@@ -75,6 +92,12 @@ export default {
         }
         this.url = '/api/indicators?' + params.join('&')
       }
+    },
+    calculatedItems: function(indicatorsItems) {
+      const items = Object.keys(indicatorsItems).filter(key =>
+        !((key === 'symbol') || (key === 'price'))
+      )
+      return items
     }
   }
 }

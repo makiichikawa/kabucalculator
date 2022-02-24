@@ -58,10 +58,10 @@ export default {
   },
   methods:{
     emitLowerValue: function(value) {
-      this.$emit('input-lower-value', value)
+      this.$emit('input-lower-value', {input: value, id: this.idName})
     },
     emitUpperValue: function(value) {
-      this.$emit('input-upper-value', value)
+      this.$emit('input-upper-value', {input: value, id: this.idName})
     }
   }
 }
