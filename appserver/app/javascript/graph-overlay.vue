@@ -2,12 +2,21 @@
   v-container(id="overlay")
     v-row.base.ma-1
       v-col(cols='12' xs='12' sm='8')
-        Graph(
-          id="graph"
-          v-bind:chart-data='graphData'
-          v-bind:options='options'
-          :style='graphStyle'
-        )
+        v-row.ma-1(id="graph")
+          v-col(cols='12' no-gutter)
+            v-chip(
+              v-on:click="setShowAllTooltips"
+              small
+              outlined
+              color="accent"
+            )
+              | {{button.label}}
+          v-col(cols='12')
+            Graph(
+              v-bind:chart-data='graphData'
+              v-bind:options='options'
+              :style='graphStyle'
+            )
       v-col(cols='12' xs='12' sm='4')
         Items(
           id="graph-items"
@@ -49,6 +58,10 @@ export default {
   },
   data: function() {
     return {
+      button : {
+        symbolDisplay: false,
+        label: '銘柄コード表示'
+      },
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -100,11 +113,13 @@ export default {
         tooltips: {
           callbacks: {
             label: function(tooltipItem, data) {
-               const label = data.labels[tooltipItem.index];
-               return label + ': (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+               const label = '銘柄' + data.labels[tooltipItem.index]
+               return label
             }
           }
-        }
+        },
+        showAllTooltips: false,
+        animation: false
       },
       height: window.innerHeight / 1.2
     }
@@ -148,7 +163,7 @@ export default {
         height: `${this.height}px`,
         position: 'relative'
       }
-    },
+    }
   },
   methods: {
     setGraphItems: function(items) {
@@ -157,6 +172,17 @@ export default {
       }
       this.options.scales.xAxes[0].scaleLabel.labelString = this.indicatorsItems[items[0]]
       this.options.scales.yAxes[0].scaleLabel.labelString = this.indicatorsItems[items[1]]
+    },
+    setShowAllTooltips: function() {
+      if (this.button.symbolDisplay) {
+        this.button.symbolDisplay = false
+        this.button.label = "銘柄コード表示"
+        this.options.showAllTooltips = this.button.symbolDisplay
+      } else {
+        this.button.symbolDisplay = true
+        this.button.label = "銘柄コード非表示"
+        this.options.showAllTooltips = this.button.symbolDisplay
+      }
     }
   }
 }
