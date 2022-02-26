@@ -3,9 +3,10 @@
     v-row.ma-1(style="background-color: var(--v-base-lighten5)")
       v-col(cols="12")
         v-data-table(
-          :headers="headers",
-          :items="apiIndicators",
-          item-key="symbol",
+          :headers="headers"
+          :items="apiIndicators"
+          :header-props="headerProps"
+          item-key="symbol"
           multi-sort
         )
           template(v-slot:item.price="{ item }")
@@ -85,7 +86,10 @@ export default {
   data: function () {
     return {
       headers: this.headerItems(),
-      showGraph: false
+      showGraph: false,
+      headerProps: {
+        sortByText: 'ソート項目'
+      }
     };
   },
   methods: {
@@ -116,6 +120,9 @@ export default {
   background-color: var(--v-primary-base);
 }
 .v-data-table >>> .v-data-table-header tr th span {
+  color: var(--v-base-lighten1);
+}
+.v-data-table >>> .v-data-table-header tr th label {
   color: var(--v-base-lighten1);
 }
 .v-data-table >>> .v-data-table-header i.v-icon.v-icon {
