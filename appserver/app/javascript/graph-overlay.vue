@@ -131,10 +131,12 @@ export default {
       this.indicatorsData.forEach(function(indicators){
         const graphIndicators = {}
         for(const [index, item] of this.entries()) {
+          const graphIndicator = item.match(/^probability/) ? (indicators[item] * 100).toFixed(2)
+                               : indicators[item]
           if(index === 0) { 
-            graphIndicators.x = indicators[item]
+            graphIndicators.x = graphIndicator
           } else if(index === 1) {
-            graphIndicators.y = indicators[item]
+            graphIndicators.y = graphIndicator
           }
           data.push(graphIndicators)
           labels.push(indicators.symbol)
