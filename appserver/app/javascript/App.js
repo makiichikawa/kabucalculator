@@ -1,5 +1,6 @@
 import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.css'
+import ja from 'vuetify/es5/locale/ja.js'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import App from './App.vue'
@@ -17,6 +18,10 @@ const vuetify = new Vuetify({
     options: {
       customProperties: true
     }
+  },
+  lang: {
+        locales: { ja },
+        current: 'ja',
   }
 })
 document.addEventListener('DOMContentLoaded', () => {
