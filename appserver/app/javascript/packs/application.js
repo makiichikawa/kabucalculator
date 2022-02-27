@@ -1,3 +1,5 @@
+import 'bootstrap'
+import '../stylesheets/application'
 import '../App.js'
 require("@rails/ujs").start()
 require("turbolinks").start()
