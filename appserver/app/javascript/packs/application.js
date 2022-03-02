@@ -1,5 +1,6 @@
 import 'bootstrap'
 import '../App.js'
+import '@fortawesome/fontawesome-free/js/all'
 require.context("../images", true)
 require("@rails/ujs").start()
 require("turbolinks").start()
