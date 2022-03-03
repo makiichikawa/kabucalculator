@@ -1,9 +1,11 @@
 <template lang="pug">
-  v-container(fill-height)
-    .v-message.error--text(
-      v-show='tooManyItems'
-    )
-      | {{rules[0]}}
+  v-container
+    v-row(style='height:40px')
+      v-col(cols='12')
+        .v-message.error--text.text-left(
+          v-show='tooManyItems'
+        )
+          | {{rules[0]}}
     v-row(
       v-for="key in this.calculatedItems(indicatorsItems)"
     )
