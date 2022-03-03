@@ -20,6 +20,8 @@ services:
       - browsernetwork
     env_file:
       - ./.env
+    environment:
+      TZ: Asia/Tokyo
     stdin_open: true
     tty: true
 
