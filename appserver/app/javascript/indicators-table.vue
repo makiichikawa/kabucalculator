@@ -115,17 +115,16 @@ export default {
 };
 </script>
 
-<style scoped>
-.v-data-table >>> .v-data-table-header {
+<style lang='scss' scoped>
+@import './stylesheets/_btn-hover.scss';
+::v-deep .v-data-table-header {
   background-color: var(--v-primary-base);
-}
-.v-data-table >>> .v-data-table-header tr th span {
-  color: var(--v-base-lighten1);
-}
-.v-data-table >>> .v-data-table-header tr th label {
-  color: var(--v-base-lighten1);
-}
-.v-data-table >>> .v-data-table-header i.v-icon.v-icon {
-  color: var(--v-base-lighten1) !important;
+  tr {
+    th {
+      span, .v-icon {
+        color: var(--v-base-lighten1) !important;
+      }
+    }
+  }
 }
 </style>

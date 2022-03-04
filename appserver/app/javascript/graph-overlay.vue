@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container(id="overlay")
-    v-row.base.ma-1
+    v-row.base.ma-12
       v-col(cols='12' xs='12' sm='8')
         v-row.ma-1(id="graph")
           v-col(cols='12' no-gutter)
@@ -121,7 +121,7 @@ export default {
         showAllTooltips: false,
         animation: false
       },
-      height: window.innerHeight / 1.2
+      height: window.innerHeight / 1.5
     }
   },
   computed: {
@@ -189,7 +189,8 @@ export default {
   }
 }
 </script>
-<style>
+<style lang='scss' scoped>
+@import './stylesheets/_btn-hover.scss';
   #overlay{
     z-index: 1;
     position: fixed;
@@ -206,5 +207,9 @@ export default {
     z-index: 2;
     padding: 1em;
     background-color: var(--v-primary-lighten1);
+    ::v-deep .v-chip:hover {
+      background-color: var(--v-accent-base) !important;
+      color: var(--v-primary-base) !important;
+    }
   }
 </style>
