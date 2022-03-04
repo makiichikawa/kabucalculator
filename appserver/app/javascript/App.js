@@ -28,5 +28,5 @@ document.addEventListener('DOMContentLoaded', () => {
   new Vue({
     vuetify,
     render: h => h(App)
-  }).$mount('#js-indicators-table-vue')
+  }).$mount('#js-indicators-vue')
 })
