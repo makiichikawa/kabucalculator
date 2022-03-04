@@ -116,7 +116,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-@import './stylesheets/_btn-hover.scss';
+@import '../stylesheets/_btn-hover.scss';
 ::v-deep .v-data-table-header {
   background-color: var(--v-primary-base);
   tr {
