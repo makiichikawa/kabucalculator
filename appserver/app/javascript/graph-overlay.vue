@@ -207,5 +207,9 @@ export default {
     z-index: 2;
     padding: 1em;
     background-color: var(--v-primary-lighten1);
+    ::v-deep .v-chip:hover {
+      background-color: var(--v-accent-base) !important;
+      color: var(--v-primary-base) !important;
+    }
   }
 </style>
