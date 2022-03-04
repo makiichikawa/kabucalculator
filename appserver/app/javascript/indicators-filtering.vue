@@ -147,7 +147,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+@import './stylesheets/_btn-hover.scss';
 .v-text-field input {
   background-color: var(--v-base-lighten5);
 }
