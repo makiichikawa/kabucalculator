@@ -1,29 +1,7 @@
-import 'vuetify/dist/vuetify.min.css'
-import '@mdi/font/css/materialdesignicons.css'
-import ja from 'vuetify/es5/locale/ja.js'
 import Vue from 'vue'
-import Vuetify from 'vuetify'
 import Indicators from './indicators-page.vue'
-Vue.use(Vuetify)
+import vuetify from '../vue-plugins/vuetify'
 
-const vuetify = new Vuetify({
-  theme: {
-    themes: {
-      light: {
-        base: '#eceff1',
-        primary: '#263238',
-        accent: '#ff9800'
-      },
-    },
-    options: {
-      customProperties: true
-    }
-  },
-  lang: {
-        locales: { ja },
-        current: 'ja',
-  }
-})
 document.addEventListener('DOMContentLoaded', () => {
   new Vue({
     vuetify,
