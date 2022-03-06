@@ -40,7 +40,13 @@
               p
                 | KabuCalculatorを使って買いタイミングの株を見つけてみてください。
       v-col.text-center(cols='12')
-        v-btn(color="primary")
+        v-btn(
+          color="primary"
+          :href="`/indicators`"
+        )
           .font-weight-black(style="color: var(--v-base-lighten1)")
             | 試してみる
 </template>
+<style lang='scss' scoped>
+@import '../stylesheets/_btn-hover.scss';
+</style>
