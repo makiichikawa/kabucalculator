@@ -9,6 +9,11 @@ class IndicatorsTest < ApplicationSystemTestCase
     assert_selector('td', count: 44)
   end
 
+  test 'show meta title' do
+    visit indicators_path
+    assert_equal '指標一覧 | KabuCalculator', title
+  end
+
   test 'execute query of myuhat_medium condition' do
     visit indicators_path
     fill_in 'myuhat_medium-lower-value', with: '-0.02937019630284'

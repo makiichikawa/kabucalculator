@@ -1,5 +1,7 @@
 <template lang="pug">
-  v-container.base
+  v-container.pa-2(
+    style="background: var(--v-primary-lighten5)"
+  )
     v-row.ma-1(style="background-color: var(--v-base-lighten5)")
       v-col(cols="12")
         v-data-table(
@@ -116,7 +118,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-@import './stylesheets/_btn-hover.scss';
+@import '../stylesheets/_btn-hover.scss';
 ::v-deep .v-data-table-header {
   background-color: var(--v-primary-base);
   tr {

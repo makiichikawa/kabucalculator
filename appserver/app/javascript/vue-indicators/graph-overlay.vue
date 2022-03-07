@@ -190,7 +190,7 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-@import './stylesheets/_btn-hover.scss';
+@import '../stylesheets/_btn-hover.scss';
   #overlay{
     z-index: 1;
     position: fixed;

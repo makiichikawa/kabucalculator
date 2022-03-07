@@ -1,5 +1,7 @@
 <template lang="pug">
-v-container.base
+v-container.pa-2(
+  style="background: var(--v-primary-lighten5)"
+)
   v-row.ma-1
     v-col.text-center.primary(cols="12")
       .font-weight-black(style="color: var(--v-base-lighten1)")
@@ -148,7 +150,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-@import './stylesheets/_btn-hover.scss';
+@import '../stylesheets/_btn-hover.scss';
 .v-text-field input {
   background-color: var(--v-base-lighten5);
 }

@@ -1,6 +1,6 @@
 <template lang='pug'>
   v-app
-    v-container
+    v-container.base
       v-row
         v-col(cols='12')
           Filtering(

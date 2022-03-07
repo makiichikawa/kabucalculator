@@ -3,10 +3,9 @@ import '@mdi/font/css/materialdesignicons.css'
 import ja from 'vuetify/es5/locale/ja.js'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import App from './App.vue'
 Vue.use(Vuetify)
 
-const vuetify = new Vuetify({
+export default new Vuetify({
   theme: {
     themes: {
       light: {
@@ -23,10 +22,4 @@ const vuetify = new Vuetify({
         locales: { ja },
         current: 'ja',
   }
-})
-document.addEventListener('DOMContentLoaded', () => {
-  new Vue({
-    vuetify,
-    render: h => h(App)
-  }).$mount('#js-indicators-table-vue')
 })
