@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   namespace :api, format: "json" do
     resources :indicators, only: %i(index)
   end
+  get 'additionals', to: 'indicators#additionals'
 end
