@@ -40,4 +40,14 @@
                 | 株価の対数収益率の標準偏差になります。
               p
                 | 値が大きいほど、価格変動が大きい、つまりリスクの大きい株式ということになります。
+        v-col.text-center(cols='12' sm='12' md='10')
+          v-btn(
+            color="primary"
+            :href="`/indicators`"
+          )
+            .font-weight-black(style="color: var(--v-base-lighten1)")
+              | 戻る
 </template>
+<style lang='scss' scoped>
+@import '../stylesheets/_btn-hover.scss';
+</style>
