@@ -117,4 +117,21 @@ class IndicatorsTest < ApplicationSystemTestCase
       assert_text '指標はふたつのみ有効'
     end
   end
+
+  test 'show additionals page' do
+    visit additionals_path
+    assert_equal '補足説明 | KabuCalculator', title
+  end
+
+  test 'show additionals page when click on indicators item' do
+    visit indicators_path
+    click_on '短期リターン'
+    assert_equal '補足説明 | KabuCalculator', title
+  end
+
+  test 'show indicators page when click on back button' do
+    visit additionals_path
+    click_on '戻る'
+    assert_equal '指標一覧 | KabuCalculator', title
+  end
 end

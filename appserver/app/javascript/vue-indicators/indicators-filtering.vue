@@ -31,7 +31,12 @@ v-container.pa-2(
             v-for="key in this.calculatedItems(indicatorsItems)"
           )
             v-col.text-sm-subtitle-2.text-xs-body-2(cols="12", xs="12", sm="4")
-              | {{indicatorsItems[key]}}
+              v-tooltip(top)
+                template(v-slot:activator="{ on, attrs }")
+                  span(v-bind="attrs" v-on="on")
+                    a(href="/additionals") {{indicatorsItems[key]}}
+                span
+                  | {{additionals[key]}}
               Field(
                 v-on:input-upper-value="setUpperLowerCondition('upper', $event, conditions[key])",
                 v-on:input-lower-value="setUpperLowerCondition('lower', $event, conditions[key])",
@@ -105,6 +110,17 @@ export default {
           lower: "",
         },
       },
+      additionals: {
+        probability_short: '直近5日間の価格水準。50%(-50%)に近づくほどより上昇(下降)している。',
+        myuhat_short: '直近5日間の収益率。より高い値をとるほど収益率が高い。',
+        sigmahat_short: '直近5日間の値動きの激しさを示す。値が大きいほど値動きが激しい。',
+        probability_medium: '直近25日間の価格水準。50%(-50%)に近づくほどより上昇(下降)している。',
+        myuhat_medium: '直近25日間の収益率。より高い値をとるほど収益率が高い。',
+        sigmahat_medium: '直近25日間の値動きの激しさを示す。値が大きいほど値動きが激しい。',
+        probability_long: '直近75日間の価格水準。50%(-50%)に近づくほどより上昇(下降)している。',
+        myuhat_long: '直近75日間の収益率。より高い値をとるほど収益率が高い。',
+        sigmahat_long: '直近75日間の値動きの激しさを示す。値が大きいほど値動きが激しい。'
+      }
     };
   },
   computed: {
