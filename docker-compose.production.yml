@@ -1,0 +1,86 @@
+version: "3.2"
+
+services:
+  webserver:
+    build:
+      context: .
+      dockerfile: ./webserver/Dockerfile
+    ports:
+      - 8080:80
+    restart: always
+    volumes:
+      - "public-data:/appserver/public"
+      - "tmp-data:/appserver/tmp"
+    depends_on:
+      - appserver
+
+  appserver:
+    build:
+      context: .
+      dockerfile: ./appserver/Dockerfile
+    command: >
+      bash -c "rails tmp:cache:clear && bin/webpack && bundle exec puma -C config/puma/production.rb -e production" 
+    volumes:
+      - "public-data:/appserver/public"
+      - "tmp-data:/appserver/tmp"
+      - type: bind
+        source: ./appserver
+        target: /appserver
+    ports:
+      - 3000:3000
+    depends_on:
+      - dbserver
+    networks:
+      - dbservernetwork
+      - webservernetwork
+    env_file:
+      - ./.env
+    environment:
+      TZ: Asia/Tokyo
+    stdin_open: true
+    tty: true
+
+  batch:
+    build:
+      context: .
+      dockerfile: ./batch/Dockerfile
+    command: >
+      sh -c "cd lib && python main.py && /bin/bash"
+    networks:
+      - dbservernetwork
+    depends_on:
+      - dbserver
+    volumes:
+      - type: bind
+        source: ./batch/lib
+        target: /python/lib
+    env_file:
+      - ./.env
+    tty: true
+
+  dbserver:
+    build:
+      context: .
+      dockerfile: ./dbserver/Dockerfile
+    expose:
+      - 3306
+    networks:
+      - dbservernetwork
+    volumes:
+      - dbserver:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=$DB_DATABASE
+      - MYSQL_USERNAME=$DB_USERNAME
+      - MYSQL_PASSWORD=$DB_PASSWORD
+      - MYSQL_ROOT_PASSWORD=$DB_ROOT_PASSWORD
+      - TZ=Asia/Tokyo
+    restart: always
+
+networks:
+  dbservernetwork:
+  webservernetwork:
+
+volumes:
+  dbserver:
+  public-data:
+  tmp-data:
