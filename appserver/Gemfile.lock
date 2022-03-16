@@ -259,7 +259,7 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4.1)
   rubocop-fjord
   rubocop-rails
-  sass-rails (>= 6)
+  sass-rails
   selenium-webdriver
   slim-rails
   slim_lint
