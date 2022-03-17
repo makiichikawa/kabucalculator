@@ -7,12 +7,22 @@ services:
       dockerfile: ./webserver/Dockerfile
     ports:
       - 80:80
+      - 443:443
     restart: always
     volumes:
       - "public-data:/appserver/public"
       - "tmp-data:/appserver/tmp"
+      - "certbot-date:/var/www/certbot/:ro"
+      - "ssl-date:/etc/nginx/ssl/:ro"
     depends_on:
       - appserver
+      - certbot
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - "certbot-date:/var/www/certbot/:rw"
+      - "ssl-date:/etc/letsencrypt/:rw"
 
   appserver:
     build:
@@ -86,3 +96,5 @@ volumes:
   dbserver:
   public-data:
   tmp-data:
+  certbot-date:
+  ssl-date:
