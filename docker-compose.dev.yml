@@ -49,11 +49,8 @@ services:
       - dbserver
     volumes:
       - type: bind
-        source: ./batch/lib
-        target: /python/lib
-      - type: bind
-        source: ./batch/test
-        target: /python/test
+        source: ./batch
+        target: /python
     env_file:
       - ./.env
     tty: true
