@@ -68,6 +68,8 @@ services:
         target: /python/lib
     env_file:
       - ./.env
+    environment:
+      TZ: Asia/Tokyo
     tty: true
 
   dbserver:
