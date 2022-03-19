@@ -57,7 +57,7 @@ services:
       context: .
       dockerfile: ./batch/Dockerfile
     command: >
-      sh -c "cd lib && python main.py && /bin/bash"
+      sh -c "cd lib && python batch.py && /bin/bash"
     networks:
       - dbservernetwork
     depends_on:
