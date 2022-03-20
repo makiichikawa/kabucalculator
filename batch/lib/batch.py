@@ -13,6 +13,7 @@ from lib.stock import Stock  # noqa: E402
 from lib.indicators import Indicators  # noqa: E402
 from lib.dbregister import DBRegister  # noqa: E402
 
+
 def batch():
     log_format = logging.Formatter("%(asctime)s [%(levelname)8s] %(message)s")
     logger = logging.getLogger("main")
@@ -31,7 +32,6 @@ def batch():
     file_handler.setFormatter(log_format)
     file_handler.setLevel(logging.INFO)
     logger.addHandler(file_handler)
-
 
     logger.info("batch script start")
     TERMS = {
@@ -56,7 +56,9 @@ def batch():
     elif os.getenv('ENVIRONMENT') == 'development':
         indicators.symbols = sample(stocks.get_stocks_list(COUNTRY), 100)
     logger.info("start to calculate indicators")
-    indicators_of_all_symbols = indicators.calculate_indicators_of_all_symbols()
+    indicators_of_all_symbols = (
+        indicators.calculate_indicators_of_all_symbols()
+    )
     logger.info("the calculation of all indicators is completed!!")
 
     dbregister = DBRegister()
@@ -77,6 +79,7 @@ def batch():
         dbregister.db_close()
 
     logger.info("batch script finish!!")
+
 
 if __name__ == '__main__':
     batch()
