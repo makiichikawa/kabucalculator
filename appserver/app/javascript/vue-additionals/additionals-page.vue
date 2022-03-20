@@ -1,4 +1,3 @@
-
 <template lang='pug'>
   v-app(
     style="background: var(--v-base-base)"
