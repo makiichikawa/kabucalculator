@@ -57,7 +57,7 @@ services:
       context: .
       dockerfile: ./batch/Dockerfile
     command: >
-      sh -c "cd lib && python main.py && /bin/bash"
+      sh -c "cd lib && python schedulingbatch.py && /bin/bash"
     networks:
       - dbservernetwork
     depends_on:
@@ -68,6 +68,8 @@ services:
         target: /python/lib
     env_file:
       - ./.env
+    environment:
+      TZ: Asia/Tokyo
     tty: true
 
   dbserver:

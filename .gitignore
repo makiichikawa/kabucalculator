@@ -12,5 +12,8 @@ batch/lib/__pycache__
 batch/test/__pycache__/
 batch/.DS_Store
 
+# ログファイルを無視する
+batch/log
+
 # envファイル
 .env

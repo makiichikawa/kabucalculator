@@ -5,7 +5,9 @@ services:
     build:
       context: .
       dockerfile: ./appserver/Dockerfile
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: >
+      bash -c "./bin/webpack &&
+      bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - type: bind
         source: ./appserver
@@ -40,20 +42,19 @@ services:
       context: .
       dockerfile: ./batch/Dockerfile
     command: >
-      sh -c "cd lib && python main.py && /bin/bash"
+      sh -c "cd lib && python batch.py && /bin/bash"
     networks:
       - dbservernetwork
     depends_on:
       - dbserver
     volumes:
       - type: bind
-        source: ./batch/lib
-        target: /python/lib
-      - type: bind
-        source: ./batch/test
-        target: /python/test
+        source: ./batch
+        target: /python
     env_file:
       - ./.env
+    environment:
+      TZ: Asia/Tokyo
     tty: true
 
   dbserver:

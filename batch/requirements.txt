@@ -4,6 +4,7 @@ numpy
 scipy
 mysql-connector-python
 jpbizday
+schedule
 
 # development only
 flake8
