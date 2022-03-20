@@ -6,7 +6,7 @@ sys.path.append('..')
 
 from lib.batch import batch  # noqa: E402
 
-schedule.every().day.at('23:15').do(batch)
+schedule.every().day.at('16:00').do(batch)
 
 while True:
     schedule.run_pending()
