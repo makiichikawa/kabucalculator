@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     resources :indicators, only: %i(index)
   end
   get 'additionals', to: 'indicators#additionals'
+  get 'tos', to: 'welcome#tos'
 end
