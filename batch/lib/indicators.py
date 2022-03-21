@@ -2,6 +2,7 @@ from decimal import Decimal
 import sys
 import logging
 from time import sleep
+import re
 
 sys.path.append('..')
 from lib.stockmodelprobability import StockModelProbability  # noqa: E402
@@ -51,9 +52,13 @@ class Indicators:
             try:
                 sleep(3)
                 indicators_by_symbol = self._calculate_indicators_by(symbol)
-            except (IndexError, ZeroDivisionError) as error:
-                logger.warning(f"symbol:{symbol} error:{error.args}")
-                continue
+            except (IndexError, ZeroDivisionError, ConnectionError) as error:
+                if re.search(r'error 4[0-9]{2}', error.args[0]) is None:
+                    logger.warning(f"symbol:{symbol} error:{error.args}")
+                    continue
+                else:
+                    logger.error(f"symbol:{symbol} error:{error.args}")
+                    sys.exit(1)
             else:
                 indicators.append(indicators_by_symbol)
         return indicators
@@ -62,7 +67,7 @@ class Indicators:
         indicators_by_symbol = []
         try:
             prices = self._get_prices(symbol)
-        except IndexError:
+        except (IndexError, ConnectionError):
             raise
         else:
             current_price = prices[-1]

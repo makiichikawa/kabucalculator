@@ -34,5 +34,5 @@ class Stock(Product):
             self.prices['high'] = stocks_data['High'].to_list()
             self.prices['low'] = stocks_data['Low'].to_list()
             self.prices['close'] = stocks_data['Close'].to_list()
-        except IndexError:
+        except (IndexError, ConnectionError):
             raise
