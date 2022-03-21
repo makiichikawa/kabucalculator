@@ -1,11 +1,10 @@
-
 <template lang='pug'>
   v-app(
     style="background: var(--v-base-base)"
   )
     v-container
       .text-sm-body-1.py-12
-        | Kabucalculatorで計算されている指標はすべて、株価は対数正規分布に従うという前提で計算したものになります。
+        | KabuCalculatorで計算されている指標はすべて、株価は対数正規分布に従うという前提で計算したものになります。
         br
         | シンプルな株式モデルとなりますが、株式同士で比較する一つの目安として指標を使用いただけたらと思います。
       v-row
