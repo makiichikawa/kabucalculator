@@ -16,6 +16,7 @@ gem 'webpacker', '~> 5.0'
 # not default
 gem 'html2slim'
 gem 'slim-rails'
+gem 'meta-tags'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
