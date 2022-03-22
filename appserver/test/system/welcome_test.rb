@@ -12,4 +12,10 @@ class WelcomeTest < ApplicationSystemTestCase
     visit tos_path
     assert_equal '利用規約 | KabuCalculator', title
   end
+
+  test 'show terms of sevice page when click footer tos link' do
+    visit root_path
+    click_on '利用規約'
+    assert_equal '利用規約 | KabuCalculator', title
+  end
 end
