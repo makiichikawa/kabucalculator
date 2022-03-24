@@ -15,6 +15,7 @@ gem 'webpacker', '~> 5.0'
 
 # not default
 gem 'html2slim'
+gem 'meta-tags'
 gem 'slim-rails'
 
 group :development, :test do
