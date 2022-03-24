@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-   def default_meta_tags
+  # rubocop:disable Metrics/MethodLength
+  def default_meta_tags
     {
       site: 'KabuCalculator',
       title: 'KabuCalculator',
@@ -27,4 +28,5 @@ module ApplicationHelper
       }
     }
   end
+  # rubocop:enable Metrics/MethodLength
 end
