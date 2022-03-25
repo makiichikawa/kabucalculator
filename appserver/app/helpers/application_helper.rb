@@ -16,15 +16,15 @@ module ApplicationHelper
         site_name: :site,
         description: :description,
         image: 'https://kabucalculator.ml/ogp/ogp.png',
-        url: 'https://kabucalculator.ml'
+        url: 'https://kabucalculator.ml/'
       },
       twitter: {
         title: :title,
         card: 'summary',
         site: '@kabucalculator',
         description: :description,
-        image: 'https://kabucalculator.ml/ogp/ogp-twitter.png',
-        domain: 'https://kabucalculator.ml'
+        image: 'https://kabucalculator.ml/ogp/ogp.png',
+        domain: 'https://kabucalculator.ml/'
       }
     }
   end
