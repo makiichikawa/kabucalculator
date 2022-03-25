@@ -6,6 +6,7 @@ module ApplicationHelper
     {
       site: 'KabuCalculator',
       title: 'KabuCalculator',
+      image: 'https://kabucalculator.ml/ogp/ogp.png',
       reverse: true,
       charset: 'utf-8',
       description: '統計指標に基づいた株式比較、抽出ツール',
@@ -15,16 +16,16 @@ module ApplicationHelper
         type: 'website',
         site_name: :site,
         description: :description,
-        image: 'https://kabucalculator.ml/ogp/ogp.png',
-        url: 'https://kabucalculator.ml'
+        image: :image,
+        url: 'https://kabucalculator.ml/'
       },
       twitter: {
         title: :title,
         card: 'summary',
         site: '@kabucalculator',
         description: :description,
-        image: 'https://kabucalculator.ml/ogp/ogp-twitter.png',
-        domain: 'https://kabucalculator.ml'
+        image: :image,
+        domain: 'https://kabucalculator.ml/'
       }
     }
   end
