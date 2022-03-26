@@ -7,7 +7,6 @@ services:
       dockerfile: ./appserver/Dockerfile
     command: >
       bash -c "bundle install &&
-      ./bin/webpack &&
       bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - type: bind

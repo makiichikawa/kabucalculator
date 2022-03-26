@@ -31,7 +31,6 @@ services:
     command: >
       bash -c "rails tmp:cache:clear &&
       bundle install &&
-      ./bin/webpack &&
       bundle exec puma -C config/puma/production.rb -e production"
     volumes:
       - "public-data:/appserver/public"
