@@ -7,4 +7,3 @@ import '../vue-terms-of-service/terms-of-service-page.js'
 require.context("../images", true)
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
-require("channels")

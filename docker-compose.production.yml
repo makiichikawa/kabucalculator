@@ -30,7 +30,7 @@ services:
       dockerfile: ./appserver/Dockerfile
     command: >
       bash -c "rails tmp:cache:clear &&
-      ./bin/webpack &&
+      bundle install &&
       bundle exec puma -C config/puma/production.rb -e production"
     volumes:
       - "public-data:/appserver/public"
