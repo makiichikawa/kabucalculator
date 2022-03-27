@@ -53,11 +53,9 @@ KabuCalculatorは、これらの疑問に答える統計指標を提供し、株
   |SELENIUM_DRIVER_URL|`http://selenium_chrome:4444/wd/hub`※システムテストをするときに使用するSeleniumのコンテナにアプリケーションサーバ側から接続するための設定|
 
 # インストール
-
+リポジトリのクローンで以下コマンドを実行してください。
 ```
 docker-compose -f docker-compose.dev.yml up -d
-docker exec -it kabucalculator_appserver_1 bash
-bin/webpack
 ```
 
 データベースへのデータ投入に開発環境であれば10分ほど時間を要します。
@@ -68,17 +66,14 @@ bin/webpack
 ### アプリケーションサーバ
 
 ```
-docker exec -it kabucalculator_appserver_1 bash
-bin/setup
-rails test:all
+docker exec kabucalculator_appserver_1 bin/setup
+docker exec kabucalculator_appserver_1 rails test:all
 ```
 
 ### バッチシステム
 
 ```
-docker exec -it kabucalculator_batch_1 bash
-cd test
-python -m unittest
+docker exec kabucalculator_batch_1 /bin/bash -c 'cd test && python -m unittest'
 ```
 
 # Lint
@@ -88,22 +83,19 @@ python -m unittest
 Rubyのコードについては以下のコマンドをご使用ください。
 
 ```
-docker exec -it kabucalculator_appserver_1 bash
-rubocop
+docker exec kabucalculator_appserver_1 rubocop
 ```
 
 JavaScriptのコードについては以下のコマンドをご使用ください。
 
 ```
-docker exec -it kabucalculator_appserver_1 bash
-yarn run lint
+docker exec kabucalculator_appserver_1 yarn run lint
 ```
 
 ### バッチシステム
 
 ```
-docker exec -it kabucalculator_batch_1 bash
-python -m flake8 test lib --exclude python3.9
+docker exec kabucalculator_batch_1 python -m flake8 test lib --exclude python3.9
 ```
 
 # スクリーンショット
