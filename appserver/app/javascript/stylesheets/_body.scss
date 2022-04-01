@@ -1,3 +1,10 @@
 body {
   background-color: #eceff1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  .container {
+    flex: 1;
+  }
 }

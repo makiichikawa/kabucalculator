@@ -1,11 +1,25 @@
 <template lang='pug'>
-  v-app(
-    style="background: var(--v-base-base)"
-  )
-    v-container.fill-height
-      .text-sm-h4
-        | 統計指標を使う理由
+  v-app(style="background: var(--v-base-base)")
+    v-container.py-4
       v-row
+        v-col.text-center(cols='12').py-9
+          img(
+            v-bind:src='logo'
+            class='logo')
+        v-col.text-center(cols='12')
+          .text-sm-h4
+            | 統計指標を使って銘柄を選択
+        v-col.text-center(cols='12')
+          v-btn(
+            width="10.25rem"
+            color="accent"
+            :href="`/indicators`"
+          )
+            .font-weight-black(style="color: var(--v-base-lighten1)")
+              | 試してみる
+        v-col(cols='12')
+          .text-sm-h6
+            | 統計指標を使う理由
         v-col(cols='12' xs='12' sm='6')
           v-card(height='100%')
             v-card-title
@@ -36,14 +50,21 @@
                 | 異なる性質の株を比較できるようになっています。
               p
                 | KabuCalculatorを使って買いタイミングの株を見つけてみてください。
-      v-col.text-center(cols='12')
-        v-btn(
-          color="primary"
-          :href="`/indicators`"
-        )
-          .font-weight-black(style="color: var(--v-base-lighten1)")
-            | 試してみる
 </template>
+<script>
+export default {
+  data() {
+    return {
+      logo: require('../images/kabucalculator-logo-header.svg')
+    }
+  }
+}
+</script>
 <style lang='scss' scoped>
-@import '../stylesheets/_btn-hover.scss';
+::v-deep .v-application--wrap {
+  min-height: unset;
+}
+.logo {
+  height: 4.00rem;
+}
 </style>
