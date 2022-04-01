@@ -169,6 +169,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import '../stylesheets/_btn.scss';
 .v-text-field input {
   background-color: var(--v-base-lighten5);
 }

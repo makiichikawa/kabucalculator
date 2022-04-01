@@ -11,7 +11,6 @@
             | 統計指標を使って銘柄を選択
         v-col.text-center(cols='12')
           v-btn(
-            width="10.25rem"
             color="accent"
             :href="`/indicators`"
           )
@@ -61,6 +60,7 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+@import '../stylesheets/_btn.scss';
 ::v-deep .v-application--wrap {
   min-height: unset;
 }

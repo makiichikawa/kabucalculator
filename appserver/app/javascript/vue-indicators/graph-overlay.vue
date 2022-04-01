@@ -25,7 +25,7 @@
           v-bind:calculatedItems='calculatedItems'
         )
       v-col(cols='12')
-        v-btn(color="primary", v-on:click="$emit('close')")
+        v-btn(color="success", v-on:click="$emit('close')")
           .font-weight-black(style="color: var(--v-base-lighten1)")
             | 閉じる
 </template>
@@ -190,7 +190,7 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-@import '../stylesheets/_btn-hover.scss';
+@import '../stylesheets/_btn.scss';
   #overlay{
     z-index: 1;
     position: fixed;

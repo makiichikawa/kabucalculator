@@ -42,7 +42,7 @@
             .text-right
               | {{ item.sigmahat_long | addZero }}
       v-col.text-center(cols="12")
-        v-btn(color="primary", v-on:click="openGraph")
+        v-btn(color="success", v-on:click="openGraph")
           .font-weight-black(style="color: var(--v-base-lighten1)")
             | グラフでみる
         Overlay(
@@ -118,7 +118,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-@import '../stylesheets/_btn-hover.scss';
+@import '../stylesheets/_btn.scss';
 ::v-deep .v-data-table-header {
   background-color: var(--v-primary-base);
   tr {
