@@ -9,7 +9,6 @@
           :items="apiIndicators"
           :header-props="headerProps"
           item-key="symbol"
-          multi-sort
         )
           template(v-slot:item.price="{ item }")
             .text-right
