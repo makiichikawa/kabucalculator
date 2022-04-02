@@ -1,9 +1,9 @@
 <template lang="pug">
-  v-container.pa-2(
-    style="background: var(--v-primary-lighten5)"
+  v-container.pa-0(
+    style="background-color: var(--v-base-lighten5)"
   )
-    v-row.ma-1(style="background-color: var(--v-base-lighten5)")
-      v-col(cols="12")
+    v-row.ma-0
+      v-col.pa-0(cols="12")
         v-data-table(
           :headers="headers"
           :items="apiIndicators"
@@ -124,6 +124,20 @@ export default {
     th {
       span, .v-icon {
         color: var(--v-base-lighten1) !important;
+      }
+      .v-icon {
+        position: absolute;
+      }
+    }
+  }
+}
+::v-deep .v-data-table__wrapper {
+  table {
+    tbody {
+      tr {
+        td {
+          border-left:1px solid var(--v-base-base);
+        }
       }
     }
   }
