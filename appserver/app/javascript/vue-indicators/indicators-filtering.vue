@@ -1,5 +1,5 @@
 <template lang="pug">
-v-container
+v-container.pa-0
   v-row.no-gutters
     v-col.py-2.text-center.primary(cols="12")
       .font-weight-black(style="color: var(--v-base-lighten1)")
