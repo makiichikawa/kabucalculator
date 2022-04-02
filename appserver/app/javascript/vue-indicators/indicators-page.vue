@@ -2,13 +2,19 @@
   v-app
     v-container.base
       v-row
-        v-col(cols='12')
+        v-col(
+          id='filtering'
+          cols='12'
+        )
           Filtering(
             v-on:conditions='executeQuery($event)'
             v-bind:indicatorsItems='indicatorsItems'
             v-bind:calculatedItems='calculatedItems'
           )
-        v-col(cols='12')
+        v-col(
+          id='table'
+          cols='12'
+        )
           Table(
             v-bind:apiIndicators='apiIndicators'
             v-bind:indicatorsItems='indicatorsItems'
@@ -102,3 +108,28 @@ export default {
   }
 }
 </script>
+<style lang='scss' scoped>
+::v-deep .v-application--wrap {
+  min-height: unset;
+}
+@media screen and (min-width: 1900px){
+  #filtering{
+    position: fixed;
+    top: -12px;
+    bottom: -12px;
+    left: -12px;
+    min-height: 100vh;
+    width: 30%;
+    display: flex;
+    .container {
+      flex: 1;
+      background-color: #fff;
+      padding: 0;
+    }
+  }
+  #table{
+    position: fixed;
+    right: -290px;
+  }
+}
+</style>
