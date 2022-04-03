@@ -109,9 +109,6 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-::v-deep .v-application--wrap {
-  min-height: unset;
-}
 @media screen and (min-width: 1900px){
   #filtering{
     position: fixed;

@@ -61,9 +61,6 @@ export default {
 </script>
 <style lang='scss' scoped>
 @import '../stylesheets/_btn.scss';
-::v-deep .v-application--wrap {
-  min-height: unset;
-}
 .logo {
   height: 4.00rem;
 }
