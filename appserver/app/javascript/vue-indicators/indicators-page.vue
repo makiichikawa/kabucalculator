@@ -126,7 +126,7 @@ export default {
   }
   #table{
     position: fixed;
-    right: -290px;
+    left: 29%;
   }
 }
 </style>
