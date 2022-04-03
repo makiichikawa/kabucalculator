@@ -1,9 +1,18 @@
 <template lang="pug">
 v-container.pa-0
   v-row.no-gutters
-    v-col.py-2.text-center.primary(cols="12")
-      .font-weight-black(style="color: var(--v-base-lighten1)")
-        | 検索条件
+    v-col.py-2.primary(cols="12")
+      .filtering-header(style="color: var(--v-base-lighten1)")
+        .font-weight-black
+          | 検索条件
+        .question-link.text-body-2
+          v-icon.pr-1(
+            color='var(--v-accent-base)'
+            small
+          )
+            | mdi-help-circle
+          a(href="/additionals")
+            | 統計指標について
     v-col.px-3.pb-3(
       cols="12"
       style="background: var(--v-base-lighten1)"
@@ -37,7 +46,8 @@ v-container.pa-0
               v-tooltip(top)
                 template(v-slot:activator="{ on, attrs }")
                   span(v-bind="attrs" v-on="on")
-                    a.font-weight-bold(href="/additionals") {{indicatorsItems[key]}}
+                    .font-weight-bold
+                      | {{indicatorsItems[key]}}
                 span
                   | {{additionals[key]}}
               Field(
@@ -172,5 +182,13 @@ export default {
 @import '../stylesheets/_btn.scss';
 .v-text-field input {
   background-color: var(--v-base-lighten5);
+}
+.filtering-header {
+  display: flex;
+  justify-content: center;
+  .question-link {
+    position: absolute;
+    right: 1.25rem;
+  }
 }
 </style>
