@@ -125,7 +125,7 @@ class IndicatorsTest < ApplicationSystemTestCase
 
   test 'show additionals page when click on indicators item' do
     visit indicators_path
-    click_on '短期リターン'
+    click_on '統計指標について'
     assert_equal '補足説明 | KabuCalculator', title
   end
 

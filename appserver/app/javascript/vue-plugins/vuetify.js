@@ -11,7 +11,8 @@ export default new Vuetify({
       light: {
         base: '#eceff1',
         primary: '#263238',
-        accent: '#ff9800'
+        accent: '#ff9800',
+        success: '#0D47A1'
       },
     },
     options: {
@@ -21,5 +22,8 @@ export default new Vuetify({
   lang: {
         locales: { ja },
         current: 'ja',
+  },
+  icons: {
+    iconfont: 'mdi'
   }
 })

@@ -6,4 +6,7 @@ body {
   .container {
     flex: 1;
   }
+  .v-application--wrap {
+    min-height: unset;
+  }
 }

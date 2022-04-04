@@ -1,8 +1,10 @@
 <template lang="pug">
   v-container(id="overlay")
-    v-row.base.ma-12
-      v-col(cols='12' xs='12' sm='8')
-        v-row.ma-1(id="graph")
+    v-row.base.ma-2
+      v-col.d-flex.flex-row(cols='12')
+        v-row.ma-1(
+          id="graph"
+        )
           v-col(cols='12' no-gutter)
             v-chip(
               v-on:click="setShowAllTooltips"
@@ -17,7 +19,6 @@
               v-bind:options='options'
               :style='graphStyle'
             )
-      v-col(cols='12' xs='12' sm='4')
         Items(
           id="graph-items"
           v-on:graph-items='setGraphItems'
@@ -25,7 +26,7 @@
           v-bind:calculatedItems='calculatedItems'
         )
       v-col(cols='12')
-        v-btn(color="primary", v-on:click="$emit('close')")
+        v-btn(color="success", v-on:click="$emit('close')")
           .font-weight-black(style="color: var(--v-base-lighten1)")
             | 閉じる
 </template>
@@ -190,7 +191,7 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-@import '../stylesheets/_btn-hover.scss';
+@import '../stylesheets/_btn.scss';
   #overlay{
     z-index: 1;
     position: fixed;
@@ -206,10 +207,16 @@ export default {
   #graph{
     z-index: 2;
     padding: 1em;
+    flex-grow: 1;
+    flex-shrink: 1;
     background-color: var(--v-primary-lighten1);
     ::v-deep .v-chip:hover {
       background-color: var(--v-accent-base) !important;
       color: var(--v-primary-base) !important;
     }
+  }
+  #graph-items {
+    flex-shrink: 0;
+    flex-basis: 230px;
   }
 </style>

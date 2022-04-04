@@ -1,15 +1,14 @@
 <template lang="pug">
-  v-container.pa-2(
-    style="background: var(--v-primary-lighten5)"
+  v-container.pa-0(
+    style="background-color: var(--v-base-lighten5)"
   )
-    v-row.ma-1(style="background-color: var(--v-base-lighten5)")
-      v-col(cols="12")
+    v-row.ma-0
+      v-col.pa-0(cols="12")
         v-data-table(
           :headers="headers"
           :items="apiIndicators"
           :header-props="headerProps"
           item-key="symbol"
-          multi-sort
         )
           template(v-slot:item.price="{ item }")
             .text-right
@@ -42,7 +41,7 @@
             .text-right
               | {{ item.sigmahat_long | addZero }}
       v-col.text-center(cols="12")
-        v-btn(color="primary", v-on:click="openGraph")
+        v-btn(color="success", v-on:click="openGraph")
           .font-weight-black(style="color: var(--v-base-lighten1)")
             | グラフでみる
         Overlay(
@@ -118,13 +117,27 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-@import '../stylesheets/_btn-hover.scss';
+@import '../stylesheets/_btn.scss';
 ::v-deep .v-data-table-header {
   background-color: var(--v-primary-base);
   tr {
     th {
       span, .v-icon {
         color: var(--v-base-lighten1) !important;
+      }
+      .v-icon {
+        position: absolute;
+      }
+    }
+  }
+}
+::v-deep .v-data-table__wrapper {
+  table {
+    tbody {
+      tr {
+        td {
+          border-left:1px solid var(--v-base-base);
+        }
       }
     }
   }

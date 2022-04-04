@@ -1,16 +1,27 @@
 <template lang="pug">
-v-container.pa-2(
-  style="background: var(--v-primary-lighten5)"
-)
-  v-row.ma-1
-    v-col.text-center.primary(cols="12")
-      .font-weight-black(style="color: var(--v-base-lighten1)")
-        | 検索条件
-    v-col(cols="12")
+v-container.pa-0
+  v-row.no-gutters
+    v-col.py-2.primary(cols="12")
+      .filtering-header(style="color: var(--v-base-lighten1)")
+        .font-weight-black
+          | 検索条件
+        .question-link.text-body-2
+          v-icon.pr-1(
+            color='var(--v-accent-base)'
+            small
+          )
+            | mdi-help-circle
+          a(href="/additionals")
+            | 統計指標について
+    v-col.px-3.pb-3(
+      cols="12"
+      style="background: var(--v-base-lighten1)"
+    )
       v-form(ref="form")
-        v-row(style="background: var(--v-base-lighten1)")
-          v-col.text-sm-subtitle-2.text-xs-body-2(cols="12", xs="12", sm="4")
-            | {{indicatorsItems.symbol}}
+        v-row
+          v-col.pb-0.text-sm-subtitle-2.text-xs-body-2(cols="12", xs="12", sm="4")
+            .font-weight-bold
+              | {{indicatorsItems.symbol}}
             v-row(justify="center", align="center")
               v-col(cols="12")
                 v-text-field#symbol(
@@ -19,8 +30,9 @@ v-container.pa-2(
                   v-on:input="setSymbolCondition"
                   :rules="rules"
                 )
-          v-col.text-sm-subtitle-2.text-xs-body-2(cols="12", xs="12", sm="4")
-            | {{indicatorsItems.price}}
+          v-col.pb-0.text-sm-subtitle-2.text-xs-body-2(cols="12", xs="12", sm="4")
+            .font-weight-bold
+              | {{indicatorsItems.price}}
             Field(
               v-on:input-upper-value="setUpperLowerCondition('upper', $event, conditions.price)",
               v-on:input-lower-value="setUpperLowerCondition('lower', $event, conditions.price)",
@@ -30,11 +42,12 @@ v-container.pa-2(
           template(
             v-for="key in this.calculatedItems(indicatorsItems)"
           )
-            v-col.text-sm-subtitle-2.text-xs-body-2(cols="12", xs="12", sm="4")
+            v-col.py-0.text-sm-subtitle-2.text-xs-body-2(cols="12", xs="12", sm="4")
               v-tooltip(top)
                 template(v-slot:activator="{ on, attrs }")
                   span(v-bind="attrs" v-on="on")
-                    a(href="/additionals") {{indicatorsItems[key]}}
+                    .font-weight-bold
+                      | {{indicatorsItems[key]}}
                 span
                   | {{additionals[key]}}
               Field(
@@ -43,7 +56,7 @@ v-container.pa-2(
                 v-bind:idName='key'
               )
           v-col.text-center(cols="12")
-            v-btn(color="primary", v-on:click="emitExtractionConditions")
+            v-btn(color="success", v-on:click="emitExtractionConditions")
               .font-weight-black(style="color: var(--v-base-lighten1)")
                 | 絞り込み
 </template>
@@ -166,8 +179,16 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-@import '../stylesheets/_btn-hover.scss';
+@import '../stylesheets/_btn.scss';
 .v-text-field input {
   background-color: var(--v-base-lighten5);
+}
+.filtering-header {
+  display: flex;
+  justify-content: center;
+  .question-link {
+    position: absolute;
+    right: 1.25rem;
+  }
 }
 </style>

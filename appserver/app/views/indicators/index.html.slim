@@ -1,9 +1,7 @@
 - content_for(:title, '指標一覧')
-
+= stylesheet_pack_tag 'indicators/index'
+.text-end.pe-5
+  i.fa-solid.fa-arrows-rotate.pe-2
+  | #{@update_at.strftime("%Y-%m-%d %H:%M") + ' データ更新'}
 .container
-  .row.pb-0
-    .col-12.pb-0
-      #js-indicators-vue
-    .col-12.text-end.pe-5.pt-0
-      i.fa-solid.fa-arrows-rotate.pe-2
-      | #{@update_at.strftime("%Y-%m-%d %H:%M")}
+  #js-indicators-vue
