@@ -16,6 +16,7 @@
           v-bind:value='key'
           :rules='rules'
           :hide-details='true'
+          color='success'
         )
 </template>
 <script>
