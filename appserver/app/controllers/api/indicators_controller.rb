@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::IndicatorsController < ApplicationController
+class API::IndicatorsController < ApplicationController
   def index
     @all_indicators = Indicator.filter_by(symbols, price, probability, myuhat, sigmahat)
                                .order(:symbol)
