@@ -3,6 +3,55 @@
 require 'test_helper'
 
 class IndicatorTest < ActiveSupport::TestCase
+  setup do
+    @price = {
+      lower: nil,
+      upper: nil
+    }
+    @myuhat = {
+      short: {
+        lower: nil,
+        upper: nil
+      },
+      medium: {
+        lower: nil,
+        upper: nil
+      },
+      long: {
+        lower: nil,
+        upper: nil
+      }
+    }
+    @sigmahat = {
+      short: {
+        lower: nil,
+        upper: nil
+      },
+      medium: {
+        lower: nil,
+        upper: nil
+      },
+      long: {
+        lower: nil,
+        upper: nil
+      }
+    }
+    @probability = {
+      short: {
+        lower: nil,
+        upper: nil
+      },
+      medium: {
+        lower: nil,
+        upper: nil
+      },
+      long: {
+        lower: nil,
+        upper: nil
+      }
+    }
+  end
+
   test '#round' do
     indicators = indicators(:kabu_a)
     expected = {
@@ -20,133 +69,170 @@ class IndicatorTest < ActiveSupport::TestCase
     }
     assert_equal expected, indicators.round
   end
+
   test 'scope#filter_by_symbols' do
     symbols_array = %w[1234 1235]
     actual_indicators = Indicator.filter_by_symbols(symbols_array)
     assert_equal symbols_array, actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_symbols_in_case_of_nil' do
     actual_indicators = Indicator.filter_by_symbols(nil)
     assert_equal %w[1234 1235 1236 1237], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_price_in_case_of_both_value_filled' do
-    actual_indicators = Indicator.filter_by_price(100, 102)
+    @price[:lower] = 100
+    @price[:upper] = 102
+    actual_indicators = Indicator.filter_by_price(@price)
     assert_equal %w[1234 1235 1236], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_price_in_case_of_lower_value_nil' do
-    actual_indicators = Indicator.filter_by_price(nil, 100)
+    @price[:upper] = 100
+    actual_indicators = Indicator.filter_by_price(@price)
     assert_equal ['1234'], actual_indicators.pluck(:symbol)
   end
+
   test 'scope#filter_by_price_in_case_of_both_value_nil' do
-    actual_indicators = Indicator.filter_by_price(nil, nil)
+    actual_indicators = Indicator.filter_by_price(@price)
     assert_equal %w[1234 1235 1236 1237], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_myuhat_short_in_case_of_both_value_filled' do
-    actual_indicators = Indicator.filter_by_myuhat_short(0.01, 0.03)
+    @myuhat[:short][:lower] = 0.01
+    @myuhat[:short][:upper] = 0.03
+    actual_indicators = Indicator.filter_by_myuhat(@myuhat)
     assert_equal %w[1234 1235 1237], actual_indicators.pluck(:symbol).sort
   end
-  test 'scope#filter_by_myuhat_short_in_case_of_lower_value_nil' do
-    actual_indicators = Indicator.filter_by_myuhat_short(nil, 0)
+
+  test 'scope#filter_by_@myuhat_short_in_case_of_lower_value_nil' do
+    @myuhat[:short][:upper] = 0
+    actual_indicators = Indicator.filter_by_myuhat(@myuhat)
     assert_equal ['1236'], actual_indicators.pluck(:symbol)
   end
-  test 'scope#filter_by_myuhat_short_in_case_of_both_value_nil' do
-    actual_indicators = Indicator.filter_by_myuhat_short(nil, nil)
+
+  test 'scope#filter_by_myuhat_in_case_of_all_value_nil' do
+    actual_indicators = Indicator.filter_by_myuhat(@myuhat)
     assert_equal %w[1234 1235 1236 1237], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_sigmahat_short_in_case_of_both_value_filled' do
-    actual_indicators = Indicator.filter_by_sigmahat_short(0.02, 0.03)
+    @sigmahat[:short][:lower] = 0.02
+    @sigmahat[:short][:upper] = 0.03
+    actual_indicators = Indicator.filter_by_sigmahat(@sigmahat)
     assert_equal %w[1234 1235 1236], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_sigmahat_short_in_case_of_lower_value_nil' do
-    actual_indicators = Indicator.filter_by_sigmahat_short(nil, 0.02)
+    @sigmahat[:short][:upper] = 0.02
+    actual_indicators = Indicator.filter_by_sigmahat(@sigmahat)
     assert_equal ['1237'], actual_indicators.pluck(:symbol)
   end
-  test 'scope#filter_by_sigmahat_short_in_case_of_both_value_nil' do
-    actual_indicators = Indicator.filter_by_sigmahat_short(nil, nil)
+
+  test 'scope#filter_by_sigmahat_in_case_of_all_value_nil' do
+    actual_indicators = Indicator.filter_by_sigmahat(@sigmahat)
     assert_equal %w[1234 1235 1236 1237], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_probability_short_in_case_of_both_value_filled' do
-    actual_indicators = Indicator.filter_by_probability_short(-0.5, -0.2)
+    @probability[:short][:lower] = -0.5
+    @probability[:short][:upper] = -0.2
+    actual_indicators = Indicator.filter_by_probability(@probability)
     assert_equal %w[1234 1235 1236], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_probability_short_in_case_of_upper_value_nil' do
-    actual_indicators = Indicator.filter_by_probability_short(-0.2, nil)
+    @probability[:short][:lower] = -0.2
+    actual_indicators = Indicator.filter_by_probability(@probability)
     assert_equal ['1237'], actual_indicators.pluck(:symbol)
   end
-  test 'scope#filter_by_probability_short_in_case_of_both_value_nil' do
-    actual_indicators = Indicator.filter_by_probability_short(nil, nil)
+
+  test 'scope#filter_by_probability_in_case_of_all_value_nil' do
+    actual_indicators = Indicator.filter_by_probability(@probability)
     assert_equal %w[1234 1235 1236 1237], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_myuhat_medium_in_case_of_both_value_filled' do
-    actual_indicators = Indicator.filter_by_myuhat_medium(-0.03, -0.02)
+    @myuhat[:medium][:lower] = -0.03
+    @myuhat[:medium][:upper] = -0.02
+    actual_indicators = Indicator.filter_by_myuhat(@myuhat)
     assert_equal %w[1234 1235 1236], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_myuhat_medium_in_case_of_lower_value_nil' do
-    actual_indicators = Indicator.filter_by_myuhat_medium(nil, 0)
+    @myuhat[:medium][:upper] = 0
+    actual_indicators = Indicator.filter_by_myuhat(@myuhat)
     assert_equal %w[1234 1235 1236 1237], actual_indicators.pluck(:symbol).sort
   end
-  test 'scope#filter_by_myuhat_medium_in_case_of_both_value_nil' do
-    actual_indicators = Indicator.filter_by_myuhat_medium(nil, nil)
-    assert_equal %w[1234 1235 1236 1237], actual_indicators.pluck(:symbol).sort
-  end
+
   test 'scope#filter_by_sigmahat_medium_in_case_of_both_value_filled' do
-    actual_indicators = Indicator.filter_by_sigmahat_medium(0.02, 0.03)
+    @sigmahat[:medium][:lower] = 0.02
+    @sigmahat[:medium][:upper] = 0.03
+    actual_indicators = Indicator.filter_by_sigmahat(@sigmahat)
     assert_equal %w[1234 1235 1236], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_sigmahat_medium_in_case_of_lower_value_nil' do
-    actual_indicators = Indicator.filter_by_sigmahat_medium(nil, 0.02)
+    @sigmahat[:medium][:upper] = 0.02
+    actual_indicators = Indicator.filter_by_sigmahat(@sigmahat)
     assert_equal ['1237'], actual_indicators.pluck(:symbol)
   end
-  test 'scope#filter_by_sigmahat_medium_in_case_of_both_value_nil' do
-    actual_indicators = Indicator.filter_by_sigmahat_medium(nil, nil)
-    assert_equal %w[1234 1235 1236 1237], actual_indicators.pluck(:symbol).sort
-  end
+
   test 'scope#filter_by_probability_medium_in_case_of_both_value_filled' do
-    actual_indicators = Indicator.filter_by_probability_medium(-0.5, -0.2)
+    @probability[:medium][:lower] = -0.5
+    @probability[:medium][:upper] = -0.2
+    actual_indicators = Indicator.filter_by_probability(@probability)
     assert_equal ['1236'], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_probability_medium_in_case_of_upper_value_nil' do
-    actual_indicators = Indicator.filter_by_probability_medium(-0.2, nil)
+    @probability[:medium][:lower] = -0.2
+    actual_indicators = Indicator.filter_by_probability(@probability)
     assert_equal %w[1234 1235 1237], actual_indicators.pluck(:symbol).sort
   end
-  test 'scope#filter_by_probability_medium_in_case_of_both_value_nil' do
-    actual_indicators = Indicator.filter_by_probability_medium(nil, nil)
-    assert_equal %w[1234 1235 1236 1237], actual_indicators.pluck(:symbol).sort
-  end
+
   test 'scope#filter_by_myuhat_long_in_case_of_both_value_filled' do
-    actual_indicators = Indicator.filter_by_myuhat_long(-0.03, -0.02)
+    @myuhat[:long][:lower] = -0.03
+    @myuhat[:long][:upper] = -0.02
+    actual_indicators = Indicator.filter_by_myuhat(@myuhat)
     assert_equal ['1236'], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_myuhat_long_in_case_of_lower_value_nil' do
-    actual_indicators = Indicator.filter_by_myuhat_long(0, nil)
+    @myuhat[:long][:lower] = 0
+    actual_indicators = Indicator.filter_by_myuhat(@myuhat)
     assert_equal %w[1234 1235 1237], actual_indicators.pluck(:symbol).sort
   end
-  test 'scope#filter_by_myuhat_long_in_case_of_both_value_nil' do
-    actual_indicators = Indicator.filter_by_myuhat_long(nil, nil)
-    assert_equal %w[1234 1235 1236 1237], actual_indicators.pluck(:symbol).sort
-  end
+
   test 'scope#filter_by_sigmahat_long_in_case_of_both_value_filled' do
-    actual_indicators = Indicator.filter_by_sigmahat_long(0.02, 0.03)
+    @sigmahat[:long][:lower] = 0.02
+    @sigmahat[:long][:upper] = 0.03
+    actual_indicators = Indicator.filter_by_sigmahat(@sigmahat)
     assert_equal %w[1234 1235 1236], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_sigmahat_long_in_case_of_lower_value_nil' do
-    actual_indicators = Indicator.filter_by_sigmahat_long(nil, 0.02)
+    @sigmahat[:long][:upper] = 0.02
+    actual_indicators = Indicator.filter_by_sigmahat(@sigmahat)
     assert_equal ['1237'], actual_indicators.pluck(:symbol)
   end
-  test 'scope#filter_by_sigmahat_long_in_case_of_both_value_nil' do
-    actual_indicators = Indicator.filter_by_sigmahat_long(nil, nil)
-    assert_equal %w[1234 1235 1236 1237], actual_indicators.pluck(:symbol).sort
-  end
+
   test 'scope#filter_by_probability_long_in_case_of_both_value_filled' do
-    actual_indicators = Indicator.filter_by_probability_long(-0.5, -0.2)
+    @probability[:long][:lower] = -0.5
+    @probability[:long][:upper] = -0.2
+    actual_indicators = Indicator.filter_by_probability(@probability)
     assert_equal %w[1234 1235 1236], actual_indicators.pluck(:symbol).sort
   end
+
   test 'scope#filter_by_probability_long_in_case_of_upper_value_nil' do
-    actual_indicators = Indicator.filter_by_probability_long(-0.2, nil)
+    @probability[:long][:lower] = -0.2
+    actual_indicators = Indicator.filter_by_probability(@probability)
     assert_equal ['1237'], actual_indicators.pluck(:symbol).sort
   end
-  test 'scope#filter_by_probability_long_in_case_of_both_value_nil' do
-    actual_indicators = Indicator.filter_by_probability_long(nil, nil)
+
+  test '#filter_by_nil' do
+    actual_indicators = Indicator.filter_by(nil, @price, @probability, @myuhat, @sigmahat)
     assert_equal %w[1234 1235 1236 1237], actual_indicators.pluck(:symbol).sort
   end
 end

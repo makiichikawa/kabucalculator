@@ -4,51 +4,42 @@ class Indicator < ApplicationRecord
   self.table_name = 'indicators'
 
   scope :filter_by_symbols, lambda { |symbols|
-    if symbols
-      Indicator.where(symbol: symbols.split(','))
-    else
-      Indicator.all
-    end
+    where(symbol: symbols) unless symbols.nil?
   }
 
-  scope :filter_by_price, lambda { |lowervalue, uppervalue|
-    where(price: lowervalue..uppervalue)
+  scope :filter_by_price, lambda { |price|
+    where(price: price[:lower]..price[:upper])
   }
 
-  scope :filter_by_probability_short, lambda { |lowervalue, uppervalue|
-    where(probability_short: lowervalue..uppervalue)
+  scope :filter_by_probability, lambda { |probability|
+    where(
+      probability_short: probability[:short][:lower]..probability[:short][:upper],
+      probability_medium: probability[:medium][:lower]..probability[:medium][:upper],
+      probability_long: probability[:long][:lower]..probability[:long][:upper]
+    )
   }
 
-  scope :filter_by_myuhat_short, lambda { |lowervalue, uppervalue|
-    where(myuhat_short: lowervalue..uppervalue)
+  scope :filter_by_myuhat, lambda { |myuhat|
+    where(
+      myuhat_short: myuhat[:short][:lower]..myuhat[:short][:upper],
+      myuhat_medium: myuhat[:medium][:lower]..myuhat[:medium][:upper],
+      myuhat_long: myuhat[:long][:lower]..myuhat[:long][:upper]
+    )
   }
 
-  scope :filter_by_sigmahat_short, lambda { |lowervalue, uppervalue|
-    where(sigmahat_short: lowervalue..uppervalue)
+  scope :filter_by_sigmahat, lambda { |sigmahat|
+    where(
+      sigmahat_short: sigmahat[:short][:lower]..sigmahat[:short][:upper],
+      sigmahat_medium: sigmahat[:medium][:lower]..sigmahat[:medium][:upper],
+      sigmahat_long: sigmahat[:long][:lower]..sigmahat[:long][:upper]
+    )
   }
 
-  scope :filter_by_probability_medium, lambda { |lowervalue, uppervalue|
-    where(probability_medium: lowervalue..uppervalue)
-  }
-
-  scope :filter_by_myuhat_medium, lambda { |lowervalue, uppervalue|
-    where(myuhat_medium: lowervalue..uppervalue)
-  }
-
-  scope :filter_by_sigmahat_medium, lambda { |lowervalue, uppervalue|
-    where(sigmahat_medium: lowervalue..uppervalue)
-  }
-
-  scope :filter_by_probability_long, lambda { |lowervalue, uppervalue|
-    where(probability_long: lowervalue..uppervalue)
-  }
-
-  scope :filter_by_myuhat_long, lambda { |lowervalue, uppervalue|
-    where(myuhat_long: lowervalue..uppervalue)
-  }
-
-  scope :filter_by_sigmahat_long, lambda { |lowervalue, uppervalue|
-    where(sigmahat_long: lowervalue..uppervalue)
+  scope :filter_by, lambda { |symbols, price, probability, myuhat, sigmahat|
+    filter_by_symbols(symbols).filter_by_price(price)
+                              .filter_by_probability(probability)
+                              .filter_by_myuhat(myuhat)
+                              .filter_by_sigmahat(sigmahat)
   }
 
   def round
