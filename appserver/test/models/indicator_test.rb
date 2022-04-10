@@ -231,8 +231,25 @@ class IndicatorTest < ActiveSupport::TestCase
     assert_equal ['1237'], actual_indicators.pluck(:symbol).sort
   end
 
-  test '#filter_by_nil' do
+  test 'scope#filter_by_nil' do
     actual_indicators = Indicator.filter_by(nil, @price, @probability, @myuhat, @sigmahat)
     assert_equal %w[1234 1235 1236 1237], actual_indicators.pluck(:symbol).sort
+  end
+
+  test 'scope#filter_by(symbols=XXXX,XXXX&price_uppervalue=XX)' do
+    symbols = ['1234', '1235']
+    @price[:upper] = 100
+    actual_indicators = Indicator.filter_by(symbols, @price, @probability, @myuhat, @sigmahat)
+    assert_equal ['1234'], actual_indicators.pluck(:symbol).sort
+  end
+
+  test 'scope#filter_by(probability&&myuhat&&sigmahat)' do
+    @probability[:long][:lower] = -0.5
+    @probability[:long][:upper] = -0.2
+    @sigmahat[:medium][:upper] = 0.02
+    @myuhat[:short][:lower] = 0.01
+    @myuhat[:short][:upper] = 0.03
+    actual_indicators = Indicator.filter_by(nil, @price, @probability, @myuhat, @sigmahat)
+    assert_equal [], actual_indicators.pluck(:symbol).sort
   end
 end
