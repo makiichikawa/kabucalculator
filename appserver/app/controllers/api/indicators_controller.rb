@@ -38,7 +38,7 @@ class API::IndicatorsController < ApplicationController
   end
 
   def myuhat
-     {
+    {
       short: {
         lower: params[:myuhat_short_lowervalue],
         upper: params[:myuhat_short_uppervalue]

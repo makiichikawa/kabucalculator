@@ -4,51 +4,21 @@ require 'test_helper'
 
 class IndicatorTest < ActiveSupport::TestCase
   setup do
-    @price = {
-      lower: nil,
-      upper: nil
-    }
+    @price = { lower: nil, upper: nil }
     @myuhat = {
-      short: {
-        lower: nil,
-        upper: nil
-      },
-      medium: {
-        lower: nil,
-        upper: nil
-      },
-      long: {
-        lower: nil,
-        upper: nil
-      }
+      short: { lower: nil, upper: nil },
+      medium: { lower: nil, upper: nil },
+      long: { lower: nil, upper: nil }
     }
     @sigmahat = {
-      short: {
-        lower: nil,
-        upper: nil
-      },
-      medium: {
-        lower: nil,
-        upper: nil
-      },
-      long: {
-        lower: nil,
-        upper: nil
-      }
+      short: { lower: nil, upper: nil },
+      medium: { lower: nil, upper: nil },
+      long: { lower: nil, upper: nil }
     }
     @probability = {
-      short: {
-        lower: nil,
-        upper: nil
-      },
-      medium: {
-        lower: nil,
-        upper: nil
-      },
-      long: {
-        lower: nil,
-        upper: nil
-      }
+      short: { lower: nil, upper: nil },
+      medium: { lower: nil, upper: nil },
+      long: { lower: nil, upper: nil }
     }
   end
 
@@ -237,7 +207,7 @@ class IndicatorTest < ActiveSupport::TestCase
   end
 
   test 'scope#filter_by(symbols=XXXX,XXXX&price_uppervalue=XX)' do
-    symbols = ['1234', '1235']
+    symbols = %w[1234 1235]
     @price[:upper] = 100
     actual_indicators = Indicator.filter_by(symbols, @price, @probability, @myuhat, @sigmahat)
     assert_equal ['1234'], actual_indicators.pluck(:symbol).sort

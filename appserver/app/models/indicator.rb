@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Indicator < ApplicationRecord
-
   scope :filter_by_symbols, lambda { |symbols|
     where(symbol: symbols) unless symbols.nil?
   }
