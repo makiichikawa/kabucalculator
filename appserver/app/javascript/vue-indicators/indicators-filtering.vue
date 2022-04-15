@@ -5,7 +5,7 @@ v-container.pa-0
       .filtering-header(style="color: var(--v-base-lighten1)")
         .font-weight-black
           | 検索条件
-        .question-link.text-body-2
+        .question-link.text-caption
           v-icon.pr-1(
             color='var(--v-accent-base)'
             small
