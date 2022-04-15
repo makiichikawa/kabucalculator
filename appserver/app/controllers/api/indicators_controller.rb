@@ -1,26 +1,73 @@
 # frozen_string_literal: true
 
-class Api::IndicatorsController < ApplicationController
-  before_action :set_symbols_array
+class API::IndicatorsController < ApplicationController
   def index
-    @all_indicators = Indicator.filter_by_symbols(@symbols_array)
-                               .filter_by_price(params[:price_lowervalue], params[:price_uppervalue])
-                               .filter_by_probability_short(params[:probability_short_lowervalue], params[:probability_short_uppervalue])
-                               .filter_by_myuhat_short(params[:myuhat_short_lowervalue], params[:myuhat_short_uppervalue])
-                               .filter_by_sigmahat_short(params[:sigmahat_short_lowervalue], params[:sigmahat_short_uppervalue])
-                               .filter_by_probability_medium(params[:probability_medium_lowervalue], params[:probability_medium_uppervalue])
-                               .filter_by_myuhat_medium(params[:myuhat_medium_lowervalue], params[:myuhat_medium_uppervalue])
-                               .filter_by_sigmahat_medium(params[:sigmahat_medium_lowervalue], params[:sigmahat_medium_uppervalue])
-                               .filter_by_probability_long(params[:probability_long_lowervalue], params[:probability_long_uppervalue])
-                               .filter_by_myuhat_long(params[:myuhat_long_lowervalue], params[:myuhat_long_uppervalue])
-                               .filter_by_sigmahat_long(params[:sigmahat_long_lowervalue], params[:sigmahat_long_uppervalue])
+    @all_indicators = Indicator.filter_by(symbols, price, probability, myuhat, sigmahat)
                                .order(:symbol)
                                .map(&:round)
   end
 
   private
 
-  def set_symbols_array
-    @symbols_array = params[:symbol].nil? ? nil : params[:symbol].split(',')
+  def symbols
+    params[:symbol].nil? ? nil : params[:symbol].split(',')
+  end
+
+  def price
+    {
+      lower: params[:price_lowervalue],
+      upper: params[:price_uppervalue]
+    }
+  end
+
+  def probability
+    {
+      short: {
+        lower: params[:probability_short_lowervalue],
+        upper: params[:probability_short_uppervalue]
+      },
+      medium: {
+        lower: params[:probability_medium_lowervalue],
+        upper: params[:probability_medium_uppervalue]
+      },
+      long: {
+        lower: params[:probability_long_lowervalue],
+        upper: params[:probability_long_uppervalue]
+      }
+    }
+  end
+
+  def myuhat
+    {
+      short: {
+        lower: params[:myuhat_short_lowervalue],
+        upper: params[:myuhat_short_uppervalue]
+      },
+      medium: {
+        lower: params[:myuhat_medium_lowervalue],
+        upper: params[:myuhat_medium_uppervalue]
+      },
+      long: {
+        lower: params[:myuhat_long_lowervalue],
+        upper: params[:myuhat_long_uppervalue]
+      }
+    }
+  end
+
+  def sigmahat
+    {
+      short: {
+        lower: params[:sigmahat_short_lowervalue],
+        upper: params[:sigmahat_short_uppervalue]
+      },
+      medium: {
+        lower: params[:sigmahat_medium_lowervalue],
+        upper: params[:sigmahat_medium_uppervalue]
+      },
+      long: {
+        lower: params[:sigmahat_long_lowervalue],
+        upper: params[:sigmahat_long_uppervalue]
+      }
+    }
   end
 end
