@@ -107,11 +107,14 @@ docker exec kabucalculator_batch_1 python -m flake8 test lib --exclude python3.9
 ### 銘柄抽出画面
 
 - 指標一覧
+
 ![スクリーンショット(指標一覧)](/docs/screenshot_indicators_index.png)
 
 - グラフ
+
 ![スクリーンショット(グラフ)](/docs/screenshot_indicators_graph.png)
 
 ### 各指標の補足説明
 - 補足説明
+
 ![スクリーンショット(補足説明)](/docs/screenshot_additionals.png)
