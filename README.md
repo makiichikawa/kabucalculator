@@ -106,9 +106,6 @@ docker exec kabucalculator_batch_1 python -m flake8 test lib --exclude python3.9
 
 ### 銘柄抽出画面
 
-- 検索条件
-![スクリーンショット(検索条件)](/docs/screenshot_search_terms.png)
-
 - 指標一覧
 ![スクリーンショット(指標一覧)](/docs/screenshot_indicators_index.png)
 
