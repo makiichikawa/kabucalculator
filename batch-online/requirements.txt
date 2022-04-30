@@ -5,6 +5,7 @@ scipy
 mysql-connector-python
 jpbizday
 schedule
+flask
 
 # development only
 flake8
