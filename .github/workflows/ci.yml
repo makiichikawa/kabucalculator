@@ -25,13 +25,13 @@ jobs:
         run: |
           docker-compose -f docker-compose.ci.yml up -d --remove-orphans
 
-      - name: Run Lint on batch
+      - name: Run Lint on batch-online
         run : |
-          docker exec -i kabucalculator_batch_1 bash -c "python -m flake8 test lib --exclude python3.9 && exit"
+          docker exec -i kabucalculator_batch-online_1 bash -c "python -m flake8 test lib --exclude python3.9 && exit"
 
-      - name: Run Tests on batch
+      - name: Run Tests on batch-online
         run: |
-          docker exec -i kabucalculator_batch_1 bash -c "cd test && python -m unittest"
+          docker exec -i kabucalculator_batch-online_1 bash -c "cd test && python -m unittest"
 
       - name: Run Lint on appserver
         run : |

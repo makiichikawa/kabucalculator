@@ -2,18 +2,18 @@
 .vscode
 
 # pythonのパッケージを無視する
-batch/bin
-batch/include
-batch/lib/python3.9
-batch/README.md
+batch-online/bin
+batch-online/include
+batch-online/lib/python3.9
+batch-online/README.md
 
 # キャッシュファイルを無視する
-batch/lib/__pycache__
-batch/test/__pycache__/
-batch/.DS_Store
+batch-online/lib/__pycache__
+batch-online/test/__pycache__/
+batch-online/.DS_Store
 
 # ログファイルを無視する
-batch/log
+batch-online/log
 
 # envファイル
 .env

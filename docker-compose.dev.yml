@@ -37,10 +37,10 @@ services:
     networks:
       - browsernetwork
 
-  batch:
+  batch-online:
     build:
       context: .
-      dockerfile: ./batch/Dockerfile
+      dockerfile: ./batch-online/Dockerfile
     command: >
       sh -c "cd lib && python batch.py && /bin/bash"
     networks:
@@ -49,7 +49,7 @@ services:
       - dbserver
     volumes:
       - type: bind
-        source: ./batch
+        source: ./batch-online
         target: /python
     env_file:
       - ./.env
