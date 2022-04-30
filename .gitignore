@@ -8,7 +8,7 @@ batch-online/lib/python3.9
 batch-online/README.md
 
 # キャッシュファイルを無視する
-batch-online/lib/__pycache__
+batch-online/lib/__pycache__/
 batch-online/test/__pycache__/
 batch-online/.DS_Store
 
