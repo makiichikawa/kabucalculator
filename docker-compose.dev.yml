@@ -51,6 +51,8 @@ services:
       - type: bind
         source: ./batch-online
         target: /python
+    ports:
+      - 4951:4951
     env_file:
       - ./.env
     environment:
