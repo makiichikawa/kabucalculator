@@ -42,7 +42,8 @@ services:
       context: .
       dockerfile: ./batch-online/Dockerfile
     command: >
-      sh -c "cd lib && python batch.py && /bin/bash"
+      sh -c "./lock.sh && cd lib &&
+      python online.py & cd lib && python batch.py"
     networks:
       - dbservernetwork
     depends_on:
