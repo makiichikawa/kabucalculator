@@ -42,6 +42,7 @@ class Indicator < ApplicationRecord
 
   def round
     indicators = {}
+    indicators['id'] = id
     indicators['symbol'] = symbol
     indicators['price'] = price
     indicators['probability_short'] = probability_short.round(4)
