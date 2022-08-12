@@ -41,12 +41,67 @@
 export default {
   name: 'PriceGraph',
   props: {
-    symbol:'',
-    upperPrice: '',
-    middlePrice: '',
-    lowerPrice: '',
-    upperRate: 0,
-    lowerRate: 0
+    symbol: {
+      type: String,
+      require: true,
+      default: ''
+    },
+    upperPrice: {
+      type: String,
+      require: false,
+      default: ''
+    },
+    middlePrice: {
+      type: String,
+      require: true,
+      default: ''
+    },
+    lowerPrice: {
+      type: String,
+      require: false,
+      default: ''
+    },
+    upperRate: {
+      type: Number,
+      require: false,
+      default: 0
+    },
+    lowerRate: {
+      type: Number,
+      require: false,
+      default: 0
+    }
+  },
+  computed: {
+    upperMessage: function() {
+      if (this.upperRate > 0) {
+        return this.createMessage(this.upperPrice, this.upperRate)
+      } else {
+        return ''
+      }
+    },
+    middleMessage: function() {
+      return this.createMessage(this.middlePrice, 0)
+    },
+    lowerMessage: function() {
+      if (this.lowerRate < 0) {
+        return this.createMessage(this.lowerPrice, this.lowerRate)
+      } else {
+        return ''
+      }
+    },
+    upperRatePoint: function() {
+      return this.calculatePoint(this.upperRate) + '%'
+    },
+    lowerRatePoint: function() {
+      return this.calculatePoint(this.lowerRate) + '%'
+    },
+  },
+  mounted: function () {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy: function () {
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
     handleResize: function() {
@@ -64,33 +119,6 @@ export default {
     calculatePoint: function(rate) {
       return String(10 + 0.8 * (50 - rate))
     }
-  },
-  computed: {
-    upperMessage: function() {
-      if (this.upperRate > 0) {
-        return this.createMessage(this.upperPrice, this.upperRate)
-      }
-    },
-    middleMessage: function() {
-      return this.createMessage(this.middlePrice, 0)
-    },
-    lowerMessage: function() {
-      if (this.lowerRate < 0) {
-        return this.createMessage(this.lowerPrice, this.lowerRate)
-      }
-    },
-    upperRatePoint: function() {
-      return this.calculatePoint(this.upperRate) + '%'
-    },
-    lowerRatePoint: function() {
-      return this.calculatePoint(this.lowerRate) + '%'
-    },
-  },
-  mounted: function () {
-    window.addEventListener('resize', this.handleResize)
-  },
-  beforeDestroy: function () {
-    window.removeEventListener('resize', this.handleResize)
   }
 }
 </script>

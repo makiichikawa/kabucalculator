@@ -35,6 +35,13 @@ v-container.px-5
 <script>
 export default {
   name: 'PriceItems',
+  props: {
+    lastPrice: {
+      type: String,
+      require: true,
+      default: ''
+    }
+  },
   data: function() {
     return {
       priceItems: [
@@ -50,9 +57,6 @@ export default {
         lowerRate: -10
       }
     }
-  },
-  props: {
-    lastPrice: ''
   },
   methods: {
     emitItems: function() {
