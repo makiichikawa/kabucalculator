@@ -68,5 +68,8 @@ class StockModelProbability(Probability):
         if self.sigmahat == 0:
             raise ZeroDivisionError('sigmahat is zero')
         else:
-            future_value = Decimal(norm.ppf(q=lower_probability, loc=self.myuhat, scale=self.sigmahat)).exp() * Decimal(str(self.__initial_price))
+            future_value = Decimal(norm.ppf(
+                q=lower_probability, loc=self.myuhat,
+                scale=self.sigmahat
+            )).exp() * Decimal(str(self.__initial_price))
             return float(future_value)

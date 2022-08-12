@@ -43,7 +43,7 @@ def get_future_price():
     stockmodelprobability.variance = stock.calculate_variance(
         log_returns
     )
-    stockmodelprobability.term = term 
+    stockmodelprobability.term = term
     stockmodelprobability.initial_price = initial_price
     future_price = {
         "upper_price":
@@ -52,6 +52,7 @@ def get_future_price():
             )
     }
     return jsonify(future_price)
+
 
 if __name__ == '__main__':
     api.run(host="0.0.0.0", debug=True, port=4951)
