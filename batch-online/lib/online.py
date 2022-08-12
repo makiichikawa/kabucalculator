@@ -2,7 +2,9 @@ import datetime
 import sys
 import os
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 api = Flask(__name__)
+CORS(api, origins=["https://kabucalculator.ml", "http://localhost:3000"])
 
 sys.path.append(os.path.abspath('..'))
 from lib.stockmodelprobability import StockModelProbability  # noqa: E402
