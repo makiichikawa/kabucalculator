@@ -1,0 +1,4 @@
+- content_for(:title, @indicators.symbol + 'の将来価格予想')
+
+.container
+  #js-future-price-vue(data-vue-symbol="#{@indicators.symbol}" data-vue-last-price="#{@indicators.price}")
