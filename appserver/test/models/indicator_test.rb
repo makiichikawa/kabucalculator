@@ -25,6 +25,7 @@ class IndicatorTest < ActiveSupport::TestCase
   test '#round' do
     indicators = indicators(:kabu_a)
     expected = {
+      'id' => 1,
       'symbol' => '1234',
       'price' => 100,
       'probability_short' => -0.4398,

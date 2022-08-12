@@ -1,4 +1,5 @@
 kabu_a:
+  id: 1
   symbol: 1234
   price: 100
   myuhat_short: 0.02937019630284
@@ -12,6 +13,7 @@ kabu_a:
   probability_long: -0.43978972768292
 
 kabu_b:
+  id: 2
   symbol: 1235
   price: 101
   myuhat_short: 0.02937019630281
@@ -25,6 +27,7 @@ kabu_b:
   probability_long: -0.43978972768291
 
 kabu_c:
+  id: 3
   symbol: 1236
   price: 102
   myuhat_short: -0.02937019630281
@@ -38,6 +41,7 @@ kabu_c:
   probability_long: -0.43978972768291
 
 kabu_d:
+  id: 4
   symbol: 1237
   price: 103
   myuhat_short: 0.01031031031031
