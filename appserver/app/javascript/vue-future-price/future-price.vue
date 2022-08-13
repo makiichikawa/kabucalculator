@@ -40,7 +40,7 @@ export default {
         'lower': ''
       },
       upperRate: 0,
-      lowerRate:0
+      lowerRate: 0
     }
   },
   methods: {
