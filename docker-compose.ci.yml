@@ -27,10 +27,12 @@ services:
     ports:
       - "4444:4444"
 
-  batch:
+  batch-online:
     build:
       context: .
-      dockerfile: ./batch/Dockerfile
+      dockerfile: ./batch-online/Dockerfile
+    command: >
+      sh -c "./lock.sh && cd lib && python online.py"
     depends_on:
       dbserver:
         condition: service_healthy

@@ -51,19 +51,20 @@ services:
     stdin_open: true
     tty: true
 
-  batch:
+  batch-online:
     build:
       context: .
-      dockerfile: ./batch/Dockerfile
+      dockerfile: ./batch-online/Dockerfile
     command: >
-      sh -c "cd lib && python schedulingbatch.py && /bin/bash"
+      sh -c "./lock.sh && cd lib &&
+      python online.py & cd lib && python schedulingbatch.py && /bin/bash"
     networks:
       - dbservernetwork
     depends_on:
       - dbserver
     volumes:
       - type: bind
-        source: ./batch/lib
+        source: ./batch-online/lib
         target: /python/lib
     env_file:
       - ./.env

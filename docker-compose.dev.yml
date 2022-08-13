@@ -37,20 +37,23 @@ services:
     networks:
       - browsernetwork
 
-  batch:
+  batch-online:
     build:
       context: .
-      dockerfile: ./batch/Dockerfile
+      dockerfile: ./batch-online/Dockerfile
     command: >
-      sh -c "cd lib && python batch.py && /bin/bash"
+      sh -c "./lock.sh && cd lib &&
+      python online.py & cd lib && python batch.py && /bin/bash"
     networks:
       - dbservernetwork
     depends_on:
       - dbserver
     volumes:
       - type: bind
-        source: ./batch
+        source: ./batch-online
         target: /python
+    ports:
+      - 4951:4951
     env_file:
       - ./.env
     environment:

@@ -31,6 +31,14 @@ class TestStockModelProbability(unittest.TestCase):
                 current_price=1
             )
 
+    def test_calculate_future_value(self):
+        self.assertEqual(
+            1,
+            self.stockmodelprobability.calculate_future_value(
+                lower_probability=0.5
+            )
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

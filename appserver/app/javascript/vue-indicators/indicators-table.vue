@@ -8,6 +8,7 @@
           :headers="headers"
           :items="apiIndicators"
           :header-props="headerProps"
+          @click:row="show"
           item-key="symbol"
         )
           template(v-slot:item.price="{ item }")
@@ -111,6 +112,9 @@ export default {
         )
       }
       return headerItems
+    },
+    show: function(data) {
+      window.location.href = `/indicators/${data.id}`
     }
   }
 };

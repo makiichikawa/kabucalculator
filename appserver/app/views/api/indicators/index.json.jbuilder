@@ -1,4 +1,5 @@
 json.array! @all_indicators do |indicators|
+	json.id indicators['id']
 	json.symbol indicators['symbol']
 	json.price indicators['price']
 	json.probability_short indicators['probability_short']

@@ -77,7 +77,7 @@ docker exec kabucalculator_appserver_1 rails test:all
 ### バッチシステム
 
 ```
-docker exec kabucalculator_batch_1 /bin/bash -c 'cd test && python -m unittest'
+docker exec kabucalculator_batch-online_1 /bin/bash -c 'cd test && python -m unittest'
 ```
 
 # Lint
@@ -99,7 +99,7 @@ docker exec kabucalculator_appserver_1 yarn run lint
 ### バッチシステム
 
 ```
-docker exec kabucalculator_batch_1 python -m flake8 test lib --exclude python3.9
+docker exec kabucalculator_batch-online_1 python -m flake8 test lib --exclude python3.9
 ```
 
 # スクリーンショット

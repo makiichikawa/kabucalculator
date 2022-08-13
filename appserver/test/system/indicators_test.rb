@@ -134,4 +134,9 @@ class IndicatorsTest < ApplicationSystemTestCase
     click_on '戻る'
     assert_equal '指標一覧 | KabuCalculator', title
   end
+
+  test 'show future price' do
+    visit "/indicators/#{indicators(:kabu_a).id}"
+    assert_equal '1234の将来価格予想 | KabuCalculator', title
+  end
 end
