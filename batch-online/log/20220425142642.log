@@ -1,5 +1,0 @@
-2022-04-25 14:26:42,117 [    INFO] batch script start
-2022-04-25 14:26:42,545 [    INFO] start to calculate indicators
-2022-04-25 14:27:29,666 [ WARNING] symbol:8729 error:('ERR#0007: stock information unavailable or not found.',)
-2022-04-25 14:32:02,394 [ WARNING] symbol:9437 error:('ERR#0007: stock information unavailable or not found.',)
-2022-04-25 14:33:11,403 [ WARNING] symbol:9681 error:('ERR#0007: stock information unavailable or not found.',)
