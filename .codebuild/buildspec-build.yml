@@ -1,0 +1,39 @@
+version: 0.2
+
+phases:
+  install:
+    commands: |
+      nohup /usr/bin/dockerd --host=unix:///var/run/docker.sock --registry-mirror=https://mirror.gcr.io --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&
+
+      wait_max=20
+      count=0
+      echo waiting for dockerd
+      until docker info > /dev/null 2>&1
+      do
+        printf "."
+        sleep 1
+        count=$((count + 1))
+        if [ $count -ge $wait_max ]; then
+          echo -e "\n**** ERROR dockerd not ready ****"
+          exit 1
+        fi
+      done
+      echo -e "\ndockerd ready"
+
+      docker version
+      echo $?
+  pre_build:
+    commands:
+    - $(aws ecr get-login --region ap-northeast-1 --no-include-email)
+    - chmod +x bin/env.sh
+    - bin/env.sh
+  build:
+    commands:
+    - echo Build started on `date`
+    - echo Building the Docker image...
+    - docker build -t $CONTAINER_REGISTRY/$SERVICE_NAME-app -f ./appserver/Dockerfile .
+  post_build:
+    commands:
+    - echo Build completed on `date`
+    - echo Pushing the Docker image...
+    - docker push $CONTAINER_REGISTRY/$SERVICE_NAME-app
