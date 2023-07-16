@@ -24,7 +24,7 @@ phases:
       echo $?
   pre_build:
     commands:
-    - $(aws ecr get-login --region ap-northeast-1 --no-include-email)
+    - aws ecr get-login --region ap-northeast-1 --no-include-email
     - chmod +x bin/env.sh
     - bin/env.sh
   build:
