@@ -24,13 +24,13 @@ phases:
       echo $?
   pre_build:
     commands:
-    - chmod +x bin/env.sh
-    - bin/env.sh
     - aws ecr get-login-password --region ap-northeast-1
   build:
     commands:
     - echo Build started on `date`
     - echo Building the Docker image...
+    - chmod +x bin/env.sh
+    - bin/env.sh
     - echo $CONTAINER_REGISTRY
     - docker build -t $CONTAINER_REGISTRY/$SERVICE_NAME-app ./appserver/Dockerfile
   post_build:
