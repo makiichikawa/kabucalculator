@@ -31,7 +31,6 @@ phases:
     commands:
     - echo Build started on `date`
     - echo Building the Docker image...
-    - echo $SERVICE_NAME
     - docker build -t $CONTAINER_REGISTRY/$SERVICE_NAME-app ./appserver/Dockerfile
   post_build:
     commands:
